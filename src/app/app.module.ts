@@ -1,7 +1,7 @@
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule } from '@angular/material';
+import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatExpansionModule } from '@angular/material';
 //import { AuthModule } from './auth/auth.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,13 +11,17 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './header/header.component';
+import { DefaultQuestionsComponent } from './questions/default-questions/default-questions.component';
+import { QuestionListComponent } from './questions/question-list/question-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    DefaultQuestionsComponent,
+    QuestionListComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +33,8 @@ import { HeaderComponent } from './header/header.component';
     MatInputModule,
     MatButtonModule,
     MatToolbarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

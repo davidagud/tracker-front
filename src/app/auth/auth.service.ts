@@ -30,6 +30,16 @@ export class AuthService {
       });
   }
 
+  getIsAuth() {
+    console.log('Is auth?', this.isAuthenticated);
+    return this.isAuthenticated;
+  }
+
+  getUserId() {
+    console.log('UserId:', this.userId);
+    return this.userId;
+  }
+
   loginUser(email: string, password: string) {
     const authData: AuthData = {email, password};
     this.http.post<{token: string, expiresIn: number, userId: string }>(BACKEND_URL + 'login', authData)
@@ -51,7 +61,6 @@ export class AuthService {
       }, error => {
 
       });
-
   }
 
   logout() {

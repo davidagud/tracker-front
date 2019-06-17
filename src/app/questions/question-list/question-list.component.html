@@ -1,0 +1,9 @@
+<mat-accordion multi="true">
+  <mat-expansion-panel *ngFor="let question of questions">
+    <mat-expansion-panel-header>{{ question.title }}</mat-expansion-panel-header>
+    <p>{{ question.content }}</p>
+    <mat-action-row *ngIf="userIsAuthenticated && userId">
+      <a mat-button color="accent" (click)="onAdd(userId, question.id, question.title, question.content)">Add</a>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
