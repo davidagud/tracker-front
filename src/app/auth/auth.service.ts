@@ -16,6 +16,8 @@ export class AuthService {
   private token: string;
   private userId: any;
   private tokenTimer: any;
+  private authStatusListener = new Subject<boolean>();
+  private userIdListener = new Subject<any>();
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -26,7 +28,8 @@ export class AuthService {
       .subscribe(() => {
         this.router.navigate(['/login']);
       }, error => {
-
+        this.authStatusListener.next(false);
+        this.userIdListener.next(null);
       });
   }
 
@@ -40,6 +43,14 @@ export class AuthService {
     return this.userId;
   }
 
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
+  }
+
+  getUserIdListener() {
+    return this.userIdListener.asObservable();
+  }
+
   loginUser(email: string, password: string) {
     const authData: AuthData = {email, password};
     this.http.post<{token: string, expiresIn: number, userId: string }>(BACKEND_URL + 'login', authData)
@@ -51,6 +62,8 @@ export class AuthService {
           this.setAuthTimer(expiresInDuration);
           this.isAuthenticated = true;
           this.userId = response.userId;
+          this.authStatusListener.next(true);
+          this.userIdListener.next(this.userId);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
           console.log(expirationDate);
@@ -59,13 +72,16 @@ export class AuthService {
           this.router.navigate(['/']);
         }
       }, error => {
-
+        this.authStatusListener.next(false);
+        this.userIdListener.next(null);
       });
   }
 
   logout() {
     this.token = null;
     this.isAuthenticated = false;
+    this.authStatusListener.next(false);
+    this.userIdListener.next(null);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
     this.userId = null;

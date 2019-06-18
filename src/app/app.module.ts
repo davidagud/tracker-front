@@ -1,7 +1,7 @@
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatExpansionModule } from '@angular/material';
+import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatExpansionModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 //import { AuthModule } from './auth/auth.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,17 +11,15 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './header/header.component';
-import { DefaultQuestionsComponent } from './questions/default-questions/default-questions.component';
-import { QuestionListComponent } from './questions/question-list/question-list.component';
+import { AuthGuard } from './auth/auth.guard';
+import { QuestionsModule } from './questions/questions.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
     LoginComponent,
-    HeaderComponent,
-    DefaultQuestionsComponent,
-    QuestionListComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -34,9 +32,12 @@ import { QuestionListComponent } from './questions/question-list/question-list.c
     MatButtonModule,
     MatToolbarModule,
     AppRoutingModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDatepickerModule,
+    QuestionsModule,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

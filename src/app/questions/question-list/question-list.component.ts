@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Question } from '../question.model';
-import { QuestionsService } from '../questions.service';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from './../../auth/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { QuestionsService } from '../questions.service';
+import { Question } from '../question.model';
 
 @Component({
   selector: 'app-question-list',
@@ -10,24 +10,19 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./question-list.component.css']
 })
 export class QuestionListComponent implements OnInit {
-  questions: Question[] = [];
-  userIsAuthenticated = false;
   userId: string;
+  questions: Question[] = [];
   private questionsSub: Subscription;
 
-  constructor(public questionsService: QuestionsService, public authService: AuthService) { }
+  constructor(public questionsService: QuestionsService, public authService: AuthService) {}
 
   ngOnInit() {
     this.userId = this.authService.getUserId();
-    this.userIsAuthenticated = this.authService.getIsAuth();
-    this.questionsService.getQuestions();
+
+    this.questionsService.getQuestions(this.userId);
     this.questionsSub = this.questionsService.getQuestionsUpdatedListener().subscribe((questionsData: { questions: Question[]}) => {
       this.questions = questionsData.questions;
     });
-  }
-
-  onAdd(userId, questionId, questionTitle, questionContent) {
-    this.questionsService.addQuestion(userId, questionId, questionTitle, questionContent);
   }
 
 }
