@@ -21,10 +21,6 @@ export class DayComponent implements OnInit {
   ngOnInit() {
     this.userId = this.authService.getUserId();
 
-    this.form = new FormGroup({
-      'date': new FormControl(null)
-    });
-
     this.questionsService.getQuestions(this.userId);
     this.questionsSub = this.questionsService.getQuestionsUpdatedListener().subscribe((questionsData: { questions: Question[]}) => {
       this.userQuestions = questionsData.questions;

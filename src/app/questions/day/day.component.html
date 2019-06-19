@@ -1,4 +1,4 @@
-<form [formGroup]="form" (submit)="onSaveDay()">
+<!-- <form [formGroup]="form" (submit)="onSaveDay()">
   <mat-form-field>
     <input matInput [matDatepicker]="datePicker" placeholder="Pick a date">
     <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
@@ -7,5 +7,12 @@
   <div *ngFor="let question of userQuestions">
     <p>{{ question.title }}</p>
     <p>{{ question.content }}</p>
+    <input matInput [formControlName]="test" type="text" placeholder="Type here">
+    <button mat-raised-button color="accent" type="submit">Submit</button>
   </div>
-</form>
+</form> -->
+
+<div *ngFor="let question of userQuestions">
+  <p>{{ question.title }}</p>
+  <p>{{ question.content }}</p>
+</div>

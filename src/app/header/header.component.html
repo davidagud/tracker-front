@@ -5,11 +5,8 @@
   <span class="spacer"></span>
   <ul>
     <li *ngIf="userIsAuthenticated">
-      <a mat-button [routerLink]="['/questions', userId]" routerLinkActive="mat-accent">Questions</a>
+      <a mat-button [routerLink]="['/questions', userId, 'today']" routerLinkActive="mat-accent">Track</a>
     </li>
-    <li *ngIf="userIsAuthenticated">
-        <a mat-button [routerLink]="['/questions', userId, 'today']" routerLinkActive="mat-accent">Track</a>
-      </li>
     <li>
       <a mat-button *ngIf="!userIsAuthenticated" routerLink="/login" routerLinkActive="mat-accent">Login</a>
     </li>
