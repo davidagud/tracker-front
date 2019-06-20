@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { Question } from './question.model';
 import { Subject } from 'rxjs';
 import { UserQuestion } from './user-question.model';
+import { PresenceService } from './presence.service';
 
 const BACKEND_URL = environment.apiUrl + '/questions/';
 
@@ -27,8 +27,8 @@ export class QuestionsService {
                 title: question.title,
                 id: question._id,
                 content: question.content
-              }
-            })
+              };
+            });
         })
       )
       .subscribe(extractedQuestions => {
@@ -40,15 +40,7 @@ export class QuestionsService {
   }
 
   getQuestionsUpdatedListener() {
-    return this.questionsUpdated.asObservable();
-  }
-
-  getQuestionPresence() {
-
-  }
-
-  getQuestionPresenceListener() {
-
+    return this.questionsUpdated;
   }
 
   addQuestion(userId: string, questionId: string, questionTitle: string, questionContent: string) {
@@ -63,14 +55,18 @@ export class QuestionsService {
     this.http.put<{message: string, question: UserQuestion}>(BACKEND_URL, questionData)
       .subscribe((responseData) => {
         console.log('Response data', responseData);
+        this.getQuestions(userId);
+        console.log('Added, full ob', this.questions);
       });
   }
 
   deleteQuestion(userId: string, questionId: string) {
     console.log('service delete');
-    return this.http.delete(BACKEND_URL + userId + '/' + questionId)
+    this.http.delete(BACKEND_URL + userId + '/' + questionId)
       .subscribe((responseData) => {
-        console.log('Response date', responseData);
+        console.log('Response data', responseData);
+        this.getQuestions(userId);
+        console.log('Deleted, full ob', this.questions);
       });
   }
 }

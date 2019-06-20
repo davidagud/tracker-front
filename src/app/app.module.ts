@@ -21,13 +21,17 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { AuthGuard } from './auth/auth.guard';
 import { QuestionsModule } from './questions/questions.module';
+import { DynamicFormComponent } from './form/dynamic-form/dynamic-form.component';
+import { DynamicFormQuestionsComponent } from './form/dynamic-form-questions/dynamic-form-questions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    DynamicFormComponent,
+    DynamicFormQuestionsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,8 +1,9 @@
+import { PresenceService } from './../presence.service';
 import { QuestionsService } from './../questions.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
 import { Question } from '../question.model';
 import { DefaultQuestionsService } from '../default-questions.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject, BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { UserQuestion } from '../user-question.model';
 
@@ -11,55 +12,75 @@ import { UserQuestion } from '../user-question.model';
   templateUrl: './default-questions.component.html',
   styleUrls: ['./default-questions.component.css']
 })
-export class DefaultQuestionsComponent implements OnInit {
+export class DefaultQuestionsComponent implements OnInit, OnDestroy {
   questions: Question[] = [];
   userIsAuthenticated = false;
   userId: string;
   userQuestions: Question[] = [];
-  questionPresence: any = {};
-  private defaultQuestionsSub: Subscription;
-  private userQuestionsSub: Subscription;
+  testStringDisplay: string;
+  questionPresence: {} = {};
+  private questionsSub: Subscription;
+
+  // private _testString = new BehaviorSubject('My value');
+  // private _testString = new Subject<string>();
 
   constructor(
     public defaultQuestionsService: DefaultQuestionsService,
     public authService: AuthService,
-    public questionsService: QuestionsService
+    public questionsService: QuestionsService,
+    public presenceService: PresenceService
   ) { }
+
+  // @Input()
+  // set testString(value) {
+  //   this._testString.next('Blah');
+  // }
+
+  // get testString() {
+  //   return this._testString.getValue();
+  // }
 
   ngOnInit() {
     this.userId = this.authService.getUserId();
     this.userIsAuthenticated = this.authService.getIsAuth();
-
     this.defaultQuestionsService.getQuestions();
-    this.defaultQuestionsSub = this.defaultQuestionsService.getQuestionsUpdatedListener()
-    .subscribe((questionsData: { questions: Question[]}) => {
-      this.questions = questionsData.questions;
+    this.questionsSub = this.defaultQuestionsService.getQuestionsUpdatedListener()
+      .subscribe((defaultQuestions: {questions: Question[]}) => {
+        this.questions = defaultQuestions.questions;
+      });
 
-      if (this.userId) {
-        this.questionsService.getQuestions(this.userId);
-        this.userQuestionsSub = this.questionsService.getQuestionsUpdatedListener()
-        .subscribe((userQuestionsData: { questions: Question[]}) => {
-          this.userQuestions = userQuestionsData.questions;
+    // this._testString.subscribe(value => {
+    //   this.testStringDisplay = value;
+    // });
+    // console.log(this._testString);
 
-          this.questions.forEach(question => {
-            this.userQuestions.forEach(userQuestion => {
-              const questionId = question.id;
-              if (question.id === userQuestion.id) {
-                this.questionPresence[questionId] = true;
-              }
-            });
-          });
-        });
-      }
+    if (this.userId) {
+      this.presenceService.setPresence(this.userId);
+      this.getQuestionPresence();
+    }
+  }
+
+  getQuestionPresence() {
+    this.presenceService.getQuestionPresenceUpdated().subscribe((questionPresenceObj) => {
+      console.log('QP', questionPresenceObj);
+      this.questionPresence = questionPresenceObj;
     });
   }
 
+  // onFireTestString() {
+  //   this._testString.next('No');
+  // }
+
   onAdd(userId: string, questionId: string, questionTitle: string, questionContent: string) {
-    this.defaultQuestionsService.addQuestion(userId, questionId, questionTitle, questionContent);
+    this.questionsService.addQuestion(userId, questionId, questionTitle, questionContent);
   }
 
   onDelete(userId: string, questionId: string) {
     this.questionsService.deleteQuestion(userId, questionId);
     console.log('deleted');
+  }
+
+  ngOnDestroy() {
+    this.questionsSub.unsubscribe();
   }
 }
