@@ -1,3 +1,19 @@
-<p>
-  dynamic-form-questions works!
-</p>
+<div [formGroup]="form">
+  <label [attr.for]="question.id">{{ question.title }}</label>
+
+  <p>{{ question.content }}</p>
+
+  <div [ngSwitch]="question.type">
+
+    <input *ngSwitchCase="'free-response'" [formControlName]="question.id"
+      [id]="question.id + '-input'" [type]="question.type">
+
+    <select [id]="question.id" *ngSwitchCase="'multiple-choice'" [formControlName]="question.id">
+      <option *ngFor="let opt of question.choices" [value]="opt.key">{{ opt.value }}</option>
+    </select>
+
+  </div>
+
+  <div class="errorMessage" *ngIf="!isValid">{{ question.title }} is required</div>
+
+</div>

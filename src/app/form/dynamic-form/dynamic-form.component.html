@@ -1,3 +1,19 @@
-<p>
-  dynamic-form works!
-</p>
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <input [matDatepicker]="datePicker" formControlName="date">
+    <mat-datepicker-toggle [for]="datePicker"></mat-datepicker-toggle>
+    <mat-datepicker #datePicker></mat-datepicker>
+
+    <div *ngFor="let question of userQuestions" class="form-row">
+      <app-dynamic-form-questions [question]="question" [form]="form"></app-dynamic-form-questions>
+    </div>
+
+    <div class="form-row">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Save</button>
+    </div>
+  </form>
+
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
+</div>

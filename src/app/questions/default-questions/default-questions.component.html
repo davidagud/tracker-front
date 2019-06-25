@@ -1,9 +1,8 @@
 <mat-card *ngFor="let question of questions">
   <mat-card-header>{{ question.title }}</mat-card-header>
-  <!--<a mat-raised-button (click)="onFireTestString()">Fire Test String</a>-->
   <mat-card-content>{{ question.content }}</mat-card-content>
   <mat-card-actions *ngIf="userIsAuthenticated && userId" align="end">
-    <a mat-raised-button *ngIf="!questionPresence[question.id]" color="primary" (click)="onAdd(userId, question.id, question.title, question.content)">Add</a>
+    <a mat-raised-button *ngIf="!questionPresence[question.id]" color="primary" (click)="onAdd(userId, question.id, question.title, question.content, question.category, question.type, question.choices)">Add</a>
     <a mat-raised-button *ngIf="questionPresence[question.id]" color="warn" (click)="onDelete(userId, question.id)">Delete</a>
   </mat-card-actions>
 </mat-card>

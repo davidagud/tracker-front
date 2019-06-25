@@ -5,12 +5,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 import { DayComponent } from './questions/day/day.component';
+import { FormQuestionsResolverService } from './questions/services/form-questions-resolver.service';
+import { PresenceResolverService } from './questions/services/presence-resolver.service';
 
 const routes: Routes = [
-  { path: '', component: DefaultQuestionsComponent },
+  { path: '', component: DefaultQuestionsComponent, resolve: { data: PresenceResolverService} },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'questions/:userId/today', component: DayComponent, canActivate: [AuthGuard]}
+  { path: 'questions/:userId/today',
+    component: DayComponent,
+    canActivate: [AuthGuard],
+    resolve: { data: FormQuestionsResolverService }
+  }
 ];
 
 @NgModule({
