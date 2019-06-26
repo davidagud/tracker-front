@@ -30,8 +30,6 @@ export class DefaultQuestionsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    console.log('Presence resolver', this.route.snapshot.data.data);
-
     this.userId = this.authService.getUserId();
     this.userIsAuthenticated = this.authService.getIsAuth();
 

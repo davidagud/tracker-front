@@ -17,6 +17,7 @@ export class DynamicFormComponent implements OnInit {
   @Input() userQuestions: QuestionBase<any>[] = [];
   form: FormGroup;
   formObject: object;
+  resolvedData;
   userId;
 
   constructor(
@@ -28,9 +29,33 @@ export class DynamicFormComponent implements OnInit {
   ngOnInit() {
     this.userId = this.authService.getUserId();
 
+    this.resolvedData = [...this.route.snapshot.data.data];
+
+    this.formCreation(this.resolvedData, null);
+  }
+
+  formCreation(dataSource, date) {
     const group = {};
 
-    this.userQuestions = [...this.route.snapshot.data.data];
+    console.log('route data', this.resolvedData);
+
+    this.userQuestions = dataSource;
+
+    if (this.userQuestions !== this.resolvedData) {
+      this.resolvedData.forEach(resolvedDataQuestionObj => {
+        const match = this.userQuestions.every(returnedQuestionObj => {
+          return returnedQuestionObj.id !== resolvedDataQuestionObj.id;
+        });
+        if (match) {
+          console.log('Push', resolvedDataQuestionObj.id);
+          this.userQuestions.push(resolvedDataQuestionObj);
+        } else {
+          console.log('Dont push', resolvedDataQuestionObj.id);
+        }
+      });
+    }
+
+    console.log('Questions', this.userQuestions);
 
     this.userQuestions.forEach(question => {
       group[question.id] = new FormControl(question.answer || '');
@@ -38,11 +63,39 @@ export class DynamicFormComponent implements OnInit {
 
     this.form = new FormGroup(group);
 
-    this.form.addControl('date', new FormControl(null, {}));
+    if (date == null) {
+      this.form.addControl('date', new FormControl(null, {}));
+    } else {
+      this.form.addControl('date', new FormControl(date, {}));
+    }
 
     this.userQuestions.forEach(question => {
       this.form.addControl(question.id, new FormControl(null, {}));
     });
+  }
+
+  async dateChange(event) {
+    const enteredDate = Date.parse(event);
+    const foundDate = await this.userAnswersService.getDayResponse(this.userId, enteredDate);
+    if (foundDate !== null) {
+      const dateFoundQuestionsArray = [];
+      for (const key in foundDate[enteredDate]) {
+        if (foundDate[enteredDate].hasOwnProperty(key)) {
+          foundDate[enteredDate][key].id = key;
+          dateFoundQuestionsArray.push(foundDate[enteredDate][key]);
+        }
+      }
+      this.dateFound(enteredDate, dateFoundQuestionsArray);
+    } else {
+      this.formCreation(this.resolvedData, event);
+    }
+  }
+
+  dateFound(enteredDate, dayData) {
+
+    const extractedDate = new Date(enteredDate);
+
+    this.formCreation(dayData, extractedDate);
   }
 
   onSubmit() {

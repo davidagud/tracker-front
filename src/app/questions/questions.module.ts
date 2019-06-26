@@ -6,13 +6,15 @@ import { MatDatepickerModule, MatInputModule, MatNativeDateModule, MatButtonModu
 import { CommonModule } from '@angular/common';
 import { DefaultQuestionsComponent } from './default-questions/default-questions.component';
 import { DayComponent } from './day/day.component';
+import { ResponsesComponent } from './responses/responses.component';
 
 @NgModule({
   declarations: [
     DefaultQuestionsComponent,
     DayComponent,
     DynamicFormComponent,
-    DynamicFormQuestionsComponent
+    DynamicFormQuestionsComponent,
+    ResponsesComponent
   ],
   imports: [
     MatCardModule,

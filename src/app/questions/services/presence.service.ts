@@ -16,14 +16,6 @@ export class PresenceService {
   constructor(private questionsService: QuestionsService, private defaultQuestionsService: DefaultQuestionsService) {}
 
   async setPresence(userId) {
-    // await this.defaultQuestionsService.getQuestionsPreSubscribe().toPromise().then(result => {
-    //   this.defaultQuestions = [...result.questions];
-    // });
-
-    // await this.questionsService.getQuestionsPreSubscribe(userId).toPromise().then(result => {
-    //   this.questions = [...result];
-    // });
-
     await this.defaultQuestionsService.getQuestionsPreSubscribe().toPromise().then(result => {
       this.defaultQuestions = [...result.questions];
     });

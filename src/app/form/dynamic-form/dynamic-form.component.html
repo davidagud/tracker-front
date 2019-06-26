@@ -1,6 +1,6 @@
 <div>
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
-    <input [matDatepicker]="datePicker" formControlName="date">
+    <input [matDatepicker]="datePicker" formControlName="date" (ngModelChange)="dateChange($event)">
     <mat-datepicker-toggle [for]="datePicker"></mat-datepicker-toggle>
     <mat-datepicker #datePicker></mat-datepicker>
 
@@ -12,8 +12,4 @@
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Save</button>
     </div>
   </form>
-
-  <div *ngIf="payLoad" class="form-row">
-    <strong>Saved the following values</strong><br>{{payLoad}}
-  </div>
 </div>

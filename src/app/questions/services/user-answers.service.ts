@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 const BACKEND_URL = environment.apiUrl + '/questions/';
 
@@ -8,6 +9,7 @@ const BACKEND_URL = environment.apiUrl + '/questions/';
   { providedIn: 'root' }
 )
 export class UserAnswersService {
+  returnedDayResponse;
 
   constructor(private http: HttpClient) {}
 
@@ -18,4 +20,15 @@ export class UserAnswersService {
         console.log('Response message:', responseData.message);
       });
   }
+
+  getDayResponse(userId, date) {
+    return this.http.get<{message: string, day: object}>(BACKEND_URL + userId + '/' + date).toPromise().then(result => {
+      return result.day;
+    })
+    .catch(err => {
+      return null;
+    });
+  }
+
+
 }
