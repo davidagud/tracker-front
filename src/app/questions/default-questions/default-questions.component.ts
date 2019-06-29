@@ -13,12 +13,12 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./default-questions.component.css']
 })
 export class DefaultQuestionsComponent implements OnInit, OnDestroy {
-  questions: Question[] = [];
+  // questions: Question[] = [];
   userIsAuthenticated = false;
   userId: string;
-  userQuestions: Question[] = [];
-  testStringDisplay: string;
+  // userQuestions: Question[] = [];
   questionPresence: {} = {};
+  objOfCategoryArrays = {};
   private questionsSub: Subscription;
 
   constructor(
@@ -36,7 +36,15 @@ export class DefaultQuestionsComponent implements OnInit, OnDestroy {
     this.defaultQuestionsService.getQuestions();
     this.questionsSub = this.defaultQuestionsService.getQuestionsUpdatedListener()
       .subscribe((defaultQuestions: {questions: Question[]}) => {
-        this.questions = defaultQuestions.questions;
+        defaultQuestions.questions.forEach(question => {
+          const category = question.category;
+          if (!this.objOfCategoryArrays[category]) {
+            this.objOfCategoryArrays[category] = [];
+          }
+          this.objOfCategoryArrays[category].push(question);
+          console.log('Pushed');
+        });
+        console.log('CatArray', this.objOfCategoryArrays);
       });
 
     this.presenceService.getQuestionPresenceUpdated().subscribe((questionPresenceObj) => {
@@ -48,7 +56,8 @@ export class DefaultQuestionsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onAdd(
+  toggleTracking(
+      questionPresence: boolean,
       userId: string,
       questionId: string,
       questionTitle: string,
@@ -57,14 +66,25 @@ export class DefaultQuestionsComponent implements OnInit, OnDestroy {
       questionType: string,
       questionChoices: object
     ) {
-    this.questionsService.addQuestion(userId, questionId, questionTitle, questionContent, questionCategory, questionType, questionChoices);
-    this.presenceService.addToQP(questionId);
-  }
-
-  onDelete(userId: string, questionId: string) {
-    this.questionsService.deleteQuestion(userId, questionId);
-    this.presenceService.removeFromQP(questionId);
-    console.log('deleted');
+    if (questionPresence) {
+      // Delete
+      this.questionsService.deleteQuestion(userId, questionId);
+      this.presenceService.removeFromQP(questionId);
+      console.log('deleted');
+    }
+    if (!questionPresence) {
+      // Add
+      this.questionsService.addQuestion(
+        userId,
+        questionId,
+        questionTitle,
+        questionContent,
+        questionCategory,
+        questionType,
+        questionChoices
+      );
+      this.presenceService.addToQP(questionId);
+    }
   }
 
   ngOnDestroy() {

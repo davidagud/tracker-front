@@ -1,8 +1,58 @@
-<mat-card *ngFor="let question of questions">
-  <mat-card-header>{{ question.title }}</mat-card-header>
-  <mat-card-content>{{ question.content }}</mat-card-content>
-  <mat-card-actions *ngIf="userIsAuthenticated && userId" align="end">
-    <a mat-raised-button *ngIf="!questionPresence[question.id]" color="primary" (click)="onAdd(userId, question.id, question.title, question.content, question.category, question.type, question.choices)">Add</a>
-    <a mat-raised-button *ngIf="questionPresence[question.id]" color="warn" (click)="onDelete(userId, question.id)">Delete</a>
-  </mat-card-actions>
-</mat-card>
+<h1>Select the questions you would like to track:</h1>
+<!-- <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h2>Food</h2>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div *ngFor="let question of questions">
+      <div>{{ question.content }}</div>
+      <div *ngIf="userIsAuthenticated && userId" align="end">
+        <mat-slide-toggle
+          [checked]="questionPresence[question.id]"
+          (toggleChange)="toggleTracking(
+            questionPresence[question.id],
+            userId,
+            question.id,
+            question.title,
+            question.content,
+            question.category,
+            question.type,
+            question.choices
+          )"
+          ></mat-slide-toggle>
+      </div>
+    </div>
+
+  </mat-expansion-panel> -->
+
+  <div *ngFor="let category of objOfCategoryArrays | keyvalue">
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h2>{{ category.key }}</h2>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div *ngFor="let question of category.value">
+            <div>{{ question.content }}</div>
+            <div *ngIf="userIsAuthenticated && userId" align="end">
+              <mat-slide-toggle
+                [checked]="questionPresence[question.id]"
+                (toggleChange)="toggleTracking(
+                  questionPresence[question.id],
+                  userId,
+                  question.id,
+                  question.title,
+                  question.content,
+                  question.category,
+                  question.type,
+                  question.choices
+                )"
+                ></mat-slide-toggle>
+            </div>
+          </div>
+
+        </mat-expansion-panel>
+  </div>

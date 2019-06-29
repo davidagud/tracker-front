@@ -1,16 +1,3 @@
-mat-card {
-  margin-bottom: 20px;
-}
-
-mat-card-header {
-  margin-bottom: 10px;
-  justify-content: center;
-}
-
-::ng-deep .mat-card-header-text {
-  margin: 0!important;
-}
-
-mat-card-content {
-  text-align: center;
+h1 {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

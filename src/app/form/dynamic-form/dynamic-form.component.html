@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
     <input [matDatepicker]="datePicker" formControlName="date" (ngModelChange)="dateChange($event)">
     <mat-datepicker-toggle [for]="datePicker"></mat-datepicker-toggle>
@@ -7,6 +7,36 @@
     <div *ngFor="let question of userQuestions" class="form-row">
       <app-dynamic-form-questions [question]="question" [form]="form"></app-dynamic-form-questions>
     </div>
+
+    <div class="form-row">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Save</button>
+    </div>
+  </form>
+</div> -->
+
+
+<div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <input [matDatepicker]="datePicker" formControlName="date" (ngModelChange)="dateChange($event)">
+    <mat-datepicker-toggle [for]="datePicker"></mat-datepicker-toggle>
+    <mat-datepicker #datePicker></mat-datepicker>
+
+
+    <div *ngFor="let category of objOfCategoryArrays | keyvalue">
+      <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h2>{{ category.key }}</h2>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div *ngFor="let question of category.value" class="form-row">
+            <app-dynamic-form-questions [question]="question" [form]="form"></app-dynamic-form-questions>
+          </div>
+
+        </mat-expansion-panel>
+    </div>
+
 
     <div class="form-row">
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Save</button>

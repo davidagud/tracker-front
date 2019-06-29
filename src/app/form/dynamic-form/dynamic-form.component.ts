@@ -19,6 +19,7 @@ export class DynamicFormComponent implements OnInit {
   formObject: object;
   resolvedData;
   userId;
+  objOfCategoryArrays;
 
   constructor(
     private userAnswersService: UserAnswersService,
@@ -30,8 +31,15 @@ export class DynamicFormComponent implements OnInit {
     this.userId = this.authService.getUserId();
 
     this.resolvedData = [...this.route.snapshot.data.data];
+    console.log('Important', this.resolvedData);
 
-    this.formCreation(this.resolvedData, null);
+    const todaysDate = new Date((new Date()).setHours( 0, 0, 0, 0));
+    const todaysDateParsed = Date.parse(todaysDate.toString());
+
+    // const todaysDate = new Date();
+    console.log('DFC DATE', todaysDateParsed);
+
+    this.formCreation(this.resolvedData, todaysDate);
   }
 
   formCreation(dataSource, date) {
@@ -57,9 +65,20 @@ export class DynamicFormComponent implements OnInit {
 
     console.log('Questions', this.userQuestions);
 
+    // Just added
+    this.objOfCategoryArrays = {};
+
     this.userQuestions.forEach(question => {
+      const category = question.category;
+      if (!this.objOfCategoryArrays[category]) {
+        this.objOfCategoryArrays[category] = [];
+      }
+      this.objOfCategoryArrays[category].push(question);
+      console.log('Pushed', question);
+
       group[question.id] = new FormControl(question.answer || '');
     });
+    // End just added
 
     this.form = new FormGroup(group);
 
@@ -76,6 +95,7 @@ export class DynamicFormComponent implements OnInit {
 
   async dateChange(event) {
     const enteredDate = Date.parse(event);
+    console.log('DFC dateChange function', enteredDate);
     const foundDate = await this.userAnswersService.getDayResponse(this.userId, enteredDate);
     if (foundDate !== null) {
       const dateFoundQuestionsArray = [];
@@ -94,6 +114,7 @@ export class DynamicFormComponent implements OnInit {
   dateFound(enteredDate, dayData) {
 
     const extractedDate = new Date(enteredDate);
+    console.log('DFC dateFound function', extractedDate);
 
     this.formCreation(dayData, extractedDate);
   }

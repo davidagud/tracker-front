@@ -69,7 +69,7 @@ export class AuthService {
           console.log(expirationDate);
           console.log(response.userId);
           this.saveAuthData(token, expirationDate, this.userId);
-          this.router.navigate(['/']);
+          this.router.navigate(['/questions/' + this.userId + '/today']);
         }
       }, error => {
         this.authStatusListener.next(false);
@@ -84,8 +84,8 @@ export class AuthService {
     this.userIdListener.next(null);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
-    this.userId = null;
-    console.log('logged out')
+    this.userId = undefined;
+    console.log('logged out');
     this.router.navigate(['/login']);
   }
 
@@ -98,7 +98,7 @@ export class AuthService {
   private setAuthTimer(duration: number) {
     console.log('Setting timer: ' + duration);
     this.tokenTimer = setTimeout(() => {
-      this.logout()
+      this.logout();
     }, duration * 1000);
   }
 

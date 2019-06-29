@@ -1,6 +1,6 @@
+import { UserAnswersService } from './user-answers.service';
 import { AuthService } from '../../auth/auth.service';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Resolve } from '@angular/router';
 import { QuestionsService } from './questions.service';
 
@@ -8,13 +8,46 @@ import { QuestionsService } from './questions.service';
   providedIn: 'root'
 })
 export class FormQuestionsResolverService implements Resolve<any> {
+  data;
   private userId: string;
 
-  constructor(private questionsService: QuestionsService, private authService: AuthService) {}
+  constructor(
+    private questionsService: QuestionsService,
+    private authService: AuthService,
+    private userAnswersService: UserAnswersService
+  ) {}
 
-  resolve(): Observable<any> {
+  resolve(): Promise<any> {
     this.userId = this.authService.getUserId();
 
-    return this.questionsService.getQuestionsPreSubscribe(this.userId);
+    const todaysDate = new Date((new Date()).setHours( 0, 0, 0, 0));
+    const todaysDateParsed = Date.parse(todaysDate.toString());
+
+    console.log('FQ Resolver Service Date', todaysDateParsed);
+
+    const foundDateFunction = new Promise((resolve, reject) => {
+      this.userAnswersService.getDayResponse(this.userId, todaysDateParsed).then(foundDate => {
+        if (foundDate !== null) {
+          const dateFoundQuestionsArray = [];
+          for (const key in foundDate[todaysDateParsed]) {
+            if (foundDate[todaysDateParsed].hasOwnProperty(key)) {
+              foundDate[todaysDateParsed][key].id = key;
+              dateFoundQuestionsArray.push(foundDate[todaysDateParsed][key]);
+            }
+          }
+          this.data = dateFoundQuestionsArray;
+          resolve(this.data);
+        } else {
+          this.questionsService.getQuestionsPreSubscribe(this.userId).toPromise().then(result => {
+            this.data = result;
+            resolve(this.data);
+          });
+        }
+      });
+    });
+
+    return foundDateFunction.then((result) => {
+      return result;
+    });
   }
 }

@@ -8,7 +8,8 @@ import {
   MatButtonModule,
   MatToolbarModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSlideToggleModule,
 } from '@angular/material';
 // import { AuthModule } from './auth/auth.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -43,7 +44,8 @@ import { QuestionsModule } from './questions/questions.module';
     MatDatepickerModule,
     QuestionsModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSlideToggleModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

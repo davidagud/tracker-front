@@ -9,7 +9,11 @@ import { FormQuestionsResolverService } from './questions/services/form-question
 import { PresenceResolverService } from './questions/services/presence-resolver.service';
 
 const routes: Routes = [
-  { path: '', component: DefaultQuestionsComponent, resolve: { data: PresenceResolverService} },
+  { path: '',
+    component: DefaultQuestionsComponent,
+    canActivate: [AuthGuard],
+    resolve: { data: PresenceResolverService}
+  },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'questions/:userId/today',

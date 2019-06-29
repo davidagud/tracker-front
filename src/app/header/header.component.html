@@ -1,11 +1,14 @@
 <mat-toolbar color="primary">
   <span>
-    <a routerLink="/">Tracker</a>
+    <a [routerLink]="['/questions', userId, 'today']">Tracker</a>
   </span>
   <span class="spacer"></span>
   <ul>
     <li *ngIf="userIsAuthenticated">
       <a mat-button [routerLink]="['/questions', userId, 'today']" routerLinkActive="mat-accent">Track</a>
+      </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/" routerLinkActive="mat-accent" [routerLinkActiveOptions]="{exact: true}">Questions</a>
     </li>
     <li>
       <a mat-button *ngIf="!userIsAuthenticated" routerLink="/login" routerLinkActive="mat-accent">Login</a>
