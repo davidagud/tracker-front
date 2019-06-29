@@ -36,7 +36,6 @@ export class DynamicFormComponent implements OnInit {
     const todaysDate = new Date((new Date()).setHours( 0, 0, 0, 0));
     const todaysDateParsed = Date.parse(todaysDate.toString());
 
-    // const todaysDate = new Date();
     console.log('DFC DATE', todaysDateParsed);
 
     this.formCreation(this.resolvedData, todaysDate);

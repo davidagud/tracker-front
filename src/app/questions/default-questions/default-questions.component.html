@@ -1,4 +1,4 @@
-<h1>Select the questions you would like to track:</h1>
+<h2>Select the questions you would like to track:</h2>
 <!-- <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
@@ -31,13 +31,13 @@
       <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <h2>{{ category.key }}</h2>
+              <h3>{{ category.key }}</h3>
             </mat-panel-title>
           </mat-expansion-panel-header>
 
-          <div *ngFor="let question of category.value">
-            <div>{{ question.content }}</div>
-            <div *ngIf="userIsAuthenticated && userId" align="end">
+          <div class="row" *ngFor="let question of category.value">
+            <div class="col-8">{{ question.content }}</div>
+            <div class="col-4" *ngIf="userIsAuthenticated && userId" align="end">
               <mat-slide-toggle
                 [checked]="questionPresence[question.id]"
                 (toggleChange)="toggleTracking(
