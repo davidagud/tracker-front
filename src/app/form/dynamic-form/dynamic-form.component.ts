@@ -122,6 +122,9 @@ export class DynamicFormComponent implements OnInit {
     const formQuestionObjectsObj = {};
 
     this.userQuestions.forEach( question => {
+      if (this.form.value[question.id] === '') {
+        this.form.value[question.id] = null;
+      }
       formQuestionObjectsObj[question.id] = {
             title: question.title,
             content: question.content,

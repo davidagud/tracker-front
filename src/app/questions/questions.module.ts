@@ -2,11 +2,21 @@ import { DynamicFormQuestionsComponent } from './../form/dynamic-form-questions/
 import { DynamicFormComponent } from './../form/dynamic-form/dynamic-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { MatDatepickerModule, MatInputModule, MatNativeDateModule, MatButtonModule, MatCardModule, MatExpansionModule, MatSlideToggleModule } from '@angular/material';
+import {
+  MatDatepickerModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatButtonModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatSlideToggleModule,
+  MatProgressBarModule
+} from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { DefaultQuestionsComponent } from './default-questions/default-questions.component';
 import { DayComponent } from './day/day.component';
 import { ResponsesComponent } from './responses/responses.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -25,7 +35,9 @@ import { ResponsesComponent } from './responses/responses.component';
     ReactiveFormsModule,
     MatNativeDateModule,
     MatExpansionModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatProgressBarModule,
+    RouterModule
   ]
 })
 export class QuestionsModule {}

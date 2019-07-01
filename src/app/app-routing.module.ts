@@ -7,9 +7,10 @@ import { AuthGuard } from './auth/auth.guard';
 import { DayComponent } from './questions/day/day.component';
 import { FormQuestionsResolverService } from './questions/services/form-questions-resolver.service';
 import { PresenceResolverService } from './questions/services/presence-resolver.service';
+import { ResponsesComponent } from './questions/responses/responses.component';
 
 const routes: Routes = [
-  { path: '',
+  { path: 'edit',
     component: DefaultQuestionsComponent,
     canActivate: [AuthGuard],
     resolve: { data: PresenceResolverService}
@@ -18,6 +19,11 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'questions/:userId/today',
     component: DayComponent,
+    canActivate: [AuthGuard],
+    resolve: { data: FormQuestionsResolverService }
+  },
+  { path: 'responses/:userId',
+    component: ResponsesComponent,
     canActivate: [AuthGuard],
     resolve: { data: FormQuestionsResolverService }
   }

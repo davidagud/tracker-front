@@ -1,58 +1,34 @@
 <h2>Select the questions you would like to track:</h2>
-<!-- <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <h2>Food</h2>
-      </mat-panel-title>
-    </mat-expansion-panel-header>
 
-    <div *ngFor="let question of questions">
-      <div>{{ question.content }}</div>
-      <div *ngIf="userIsAuthenticated && userId" align="end">
-        <mat-slide-toggle
-          [checked]="questionPresence[question.id]"
-          (toggleChange)="toggleTracking(
-            questionPresence[question.id],
-            userId,
-            question.id,
-            question.title,
-            question.content,
-            question.category,
-            question.type,
-            question.choices
-          )"
-          ></mat-slide-toggle>
-      </div>
-    </div>
+<div *ngFor="let category of objOfCategoryArrays | keyvalue">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h3>{{ category.key }}</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
 
-  </mat-expansion-panel> -->
-
-  <div *ngFor="let category of objOfCategoryArrays | keyvalue">
-      <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <h3>{{ category.key }}</h3>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <div class="row" *ngFor="let question of category.value">
-            <div class="col-8">{{ question.content }}</div>
-            <div class="col-4" *ngIf="userIsAuthenticated && userId" align="end">
-              <mat-slide-toggle
-                [checked]="questionPresence[question.id]"
-                (toggleChange)="toggleTracking(
-                  questionPresence[question.id],
-                  userId,
-                  question.id,
-                  question.title,
-                  question.content,
-                  question.category,
-                  question.type,
-                  question.choices
-                )"
-                ></mat-slide-toggle>
-            </div>
+        <div class="row" *ngFor="let question of category.value">
+          <div class="col-8">{{ question.content }}</div>
+          <div class="col-4" *ngIf="userIsAuthenticated && userId" align="end">
+            <mat-slide-toggle
+              [checked]="questionPresence[question.id]"
+              (toggleChange)="toggleTracking(
+                questionPresence[question.id],
+                userId,
+                question.id,
+                question.title,
+                question.content,
+                question.category,
+                question.type,
+                question.choices
+              )"
+              ></mat-slide-toggle>
           </div>
+        </div>
 
-        </mat-expansion-panel>
-  </div>
+      </mat-expansion-panel>
+</div>
+
+<button mat-raised-button color="warn" (click)="backClicked()">Back</button>
+

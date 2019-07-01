@@ -1,9 +1,10 @@
 <div>
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
-    <input [matDatepicker]="datePicker" formControlName="date" (ngModelChange)="dateChange($event)">
-    <mat-datepicker-toggle [for]="datePicker"></mat-datepicker-toggle>
-    <mat-datepicker #datePicker></mat-datepicker>
-
+    <mat-form-field>
+      <input matInput [matDatepicker]="datePicker" formControlName="date" (ngModelChange)="dateChange($event)" [readonly]="true">
+    </mat-form-field>
+      <mat-datepicker-toggle [for]="datePicker"></mat-datepicker-toggle>
+      <mat-datepicker #datePicker></mat-datepicker>
 
     <div *ngFor="let category of objOfCategoryArrays | keyvalue">
       <mat-expansion-panel>
@@ -23,6 +24,7 @@
 
     <div class="form-row">
       <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Save</button>
+      <button mat-raised-button color="warn" routerLink="/edit">Edit</button>
     </div>
   </form>
 </div>

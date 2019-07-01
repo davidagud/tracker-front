@@ -6,6 +6,7 @@ import { Question } from '../question.model';
 import { DefaultQuestionsService } from '../services/default-questions.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-default-questions',
@@ -26,7 +27,8 @@ export class DefaultQuestionsComponent implements OnInit, OnDestroy {
     public authService: AuthService,
     public questionsService: QuestionsService,
     public presenceService: PresenceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _location: Location
   ) {}
 
   ngOnInit() {
@@ -85,6 +87,10 @@ export class DefaultQuestionsComponent implements OnInit, OnDestroy {
       );
       this.presenceService.addToQP(questionId);
     }
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
   ngOnDestroy() {
