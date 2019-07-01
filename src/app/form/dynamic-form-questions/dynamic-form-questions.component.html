@@ -1,16 +1,25 @@
-<div [formGroup]="form">
-  <label [attr.for]="question.id">{{ question.title }}</label>
+<div [formGroup]="form" class="row container justify-content-between">
+  <!-- <label [attr.for]="question.id">{{ question.content }}</label> -->
 
-  <p>{{ question.content }}</p>
+  <h5>{{ question.content }}</h5>
 
   <div [ngSwitch]="question.type">
 
-    <input *ngSwitchCase="'free-response'" [formControlName]="question.id"
-      [id]="question.id + '-input'" [type]="question.type">
+    <mat-form-field *ngSwitchCase="'free-response'">
+      <input
+        matInput
+        [formControlName]="question.id"
+        [id]="question.id + '-input'"
+        [type]="question.type"
+        placeholder="Enter your response"
+      >
+    </mat-form-field>
 
-    <select [id]="question.id" *ngSwitchCase="'multiple-choice'" [formControlName]="question.id">
-      <option *ngFor="let opt of question.choices" [value]="opt.key">{{ opt.value }}</option>
-    </select>
+    <mat-form-field *ngSwitchCase="'multiple-choice'">
+      <mat-select [id]="question.id" [formControlName]="question.id" placeholder="Select">
+        <mat-option *ngFor="let opt of question.choices" [value]="opt.key">{{ opt.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
 
   </div>
 

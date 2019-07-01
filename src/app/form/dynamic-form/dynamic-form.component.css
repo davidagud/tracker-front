@@ -1,0 +1,14 @@
+.bottom-right-buttons {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
+
+.date-input {
+  width: 100px;
+  margin-right: 10px;
+}
+
+app-dynamic-form-questions {
+  width: 100%;
+}

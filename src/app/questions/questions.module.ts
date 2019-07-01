@@ -10,7 +10,9 @@ import {
   MatCardModule,
   MatExpansionModule,
   MatSlideToggleModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatSelectModule,
+  MatTableModule
 } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { DefaultQuestionsComponent } from './default-questions/default-questions.component';
@@ -37,7 +39,9 @@ import { RouterModule } from '@angular/router';
     MatExpansionModule,
     MatSlideToggleModule,
     MatProgressBarModule,
-    RouterModule
+    RouterModule,
+    MatSelectModule,
+    MatTableModule
   ]
 })
 export class QuestionsModule {}

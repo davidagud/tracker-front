@@ -11,6 +11,8 @@ import {
   MatNativeDateModule,
   MatSlideToggleModule,
   MatProgressBarModule,
+  MatSelectModule,
+  MatTableModule,
 } from '@angular/material';
 // import { AuthModule } from './auth/auth.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -47,7 +49,9 @@ import { QuestionsModule } from './questions/questions.module';
     MatNativeDateModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

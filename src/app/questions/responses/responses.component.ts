@@ -14,6 +14,7 @@ export class ResponsesComponent implements OnInit {
   submittedQuestionsObj = {};
   finalCount = [];
   isLoading: boolean;
+  displayedColumns: string[] = ['response', 'quantity'];
   form: FormGroup;
 
   constructor(private authService: AuthService, private userAnswersService: UserAnswersService) { }
