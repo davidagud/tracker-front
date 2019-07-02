@@ -1,4 +1,5 @@
 <div>
+  <h2 class="page-title">Track your day</h2>
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
     <mat-form-field  (click)="datePicker.open()" class="date-input">
       <input
@@ -14,10 +15,10 @@
       <mat-datepicker #datePicker></mat-datepicker>
 
     <div *ngFor="let category of objOfCategoryArrays | keyvalue">
-      <mat-expansion-panel>
+      <mat-expansion-panel class="expansion-panel">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <h2>{{ category.key }}</h2>
+              <h4>{{ category.key }}</h4>
             </mat-panel-title>
           </mat-expansion-panel-header>
 
@@ -30,8 +31,8 @@
 
 
     <div class="row bottom-right-buttons">
-      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Save</button>
-      <button mat-raised-button color="warn" routerLink="/edit">Edit</button>
+      <button mat-raised-button class="save-button" color="primary" type="submit" [disabled]="!form.valid">Save</button>
+      <button mat-raised-button class="edit-button" color="warn" routerLink="/edit">Edit Questions</button>
     </div>
   </form>
 </div>

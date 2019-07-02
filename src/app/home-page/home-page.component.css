@@ -1,0 +1,29 @@
+.home-page {
+  padding: 10vh 5vw;
+  min-height: 100%;
+  background-image: url('../../assets/bike.jpg');
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  background-blend-mode: darken;
+}
+
+.signup-button {
+  padding: 2vh 4vh;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: 1vh solid white;
+  border-radius: 10vh!important;
+}
+
+.signup-button h3 {
+  margin-bottom: 0;
+}
+
+h1 {
+  color: white;
+}
+
+.highlight {
+  color: #FC4482;
+}

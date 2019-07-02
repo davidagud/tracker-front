@@ -13,3 +13,30 @@ a {
 .spacer {
   flex: 1 1 auto;
 }
+
+.logo {
+  font-family: 'Rubik', sans-serif;
+  font-size: 1.5em;
+}
+
+.links a {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: .8em;
+}
+
+.call-to-action-active {
+  color: #FC4482!important;
+  background-color: white!important;
+  border-color: white!important;
+}
+
+.call-to-action-button {
+  color: white;
+  background-color: #FC4482;
+  border-color: #FC4482;
+  margin-right: 10px;
+}
+
+.link-active {
+  text-decoration: underline;
+}

@@ -1,7 +1,5 @@
-.bottom-right-buttons {
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
+.bottom-right-buttons button {
+  margin-right: 1vw;
 }
 
 .date-input {

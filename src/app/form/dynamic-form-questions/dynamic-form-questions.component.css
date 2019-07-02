@@ -1,5 +1,5 @@
 h5 {
-  padding-top: 12px;
+  padding-top: .84375em;
 }
 
 .input {
@@ -8,4 +8,6 @@ h5 {
 
 .row {
   margin: auto 0;
+  padding-right: 1.3vw;
+  padding-left: 1.3vw;
 }

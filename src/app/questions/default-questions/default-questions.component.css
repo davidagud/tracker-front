@@ -1,9 +1,9 @@
-h2, h3 {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+h3, h5 {
+  margin-bottom: 0;
 }
 
-.bottom-right-buttons {
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
+.question-row {
+  padding-left: 1vw;
+  padding-right: .7vw;
+  margin-bottom: 1vh;
 }

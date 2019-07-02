@@ -1,26 +1,29 @@
 <mat-toolbar color="primary">
-  <span>
-    <a [routerLink]="['/questions', userId, 'today']">Tracker</a>
+  <span *ngIf="!userIsAuthenticated">
+    <a mat-button class="logo" routerLink="/">tracker</a>
+  </span>
+  <span *ngIf="userIsAuthenticated">
+    <a mat-button class="logo" [routerLink]="['/questions', userId, 'today']">tracker</a>
   </span>
   <span class="spacer"></span>
-  <ul>
+  <ul class="links">
     <li *ngIf="userIsAuthenticated">
-      <a mat-button [routerLink]="['/questions', userId, 'today']" routerLinkActive="mat-accent">Track</a>
-    </li>
-    <li *ngIf="userIsAuthenticated">
-      <a mat-button [routerLink]="['/responses', userId]" routerLinkActive="mat-accent">Responses</a>
+      <a mat-button class="call-to-action-button" [routerLink]="['/questions', userId, 'today']" routerLinkActive="call-to-action-active">Track</a>
     </li>
     <li *ngIf="userIsAuthenticated">
-      <a mat-button routerLink="/edit" routerLinkActive="mat-accent" [routerLinkActiveOptions]="{exact: true}">Questions</a>
+        <a mat-button routerLink="/edit" routerLinkActive="link-active" [routerLinkActiveOptions]="{exact: true}">Questions</a>
+      </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button [routerLink]="['/responses', userId]" routerLinkActive="link-active">Data</a>
     </li>
     <li>
-      <a mat-button *ngIf="!userIsAuthenticated" routerLink="/login" routerLinkActive="mat-accent">Login</a>
+      <a mat-button class="call-to-action-button" *ngIf="!userIsAuthenticated"  routerLink="/login" routerLinkActive="call-to-action-active">Log In</a>
     </li>
     <li>
-      <a mat-button *ngIf="!userIsAuthenticated" routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
+      <a mat-button *ngIf="!userIsAuthenticated" routerLink="/signup" routerLinkActive="link-active">Sign Up</a>
     </li>
     <li>
-      <button mat-button *ngIf="userIsAuthenticated" (click)="onLogout()">Logout</button>
+      <a mat-button *ngIf="userIsAuthenticated" (click)="onLogout()">Logout</a>
     </li>
   </ul>
 </mat-toolbar>

@@ -1,3 +1,4 @@
+import { HomePageComponent } from './home-page/home-page.component';
 import { DefaultQuestionsComponent } from './questions/default-questions/default-questions.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -10,6 +11,9 @@ import { PresenceResolverService } from './questions/services/presence-resolver.
 import { ResponsesComponent } from './questions/responses/responses.component';
 
 const routes: Routes = [
+  { path: '',
+    component: HomePageComponent
+  },
   { path: 'edit',
     component: DefaultQuestionsComponent,
     canActivate: [AuthGuard],

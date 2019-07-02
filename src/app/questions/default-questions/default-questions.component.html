@@ -1,36 +1,43 @@
-<h2>Select the questions you would like to track:</h2>
+<div class="background">
+  <div class="content-frame">
+    <mat-card class="content">
+      <h2 class="page-title">Select questions to track</h2>
 
-<div *ngFor="let category of objOfCategoryArrays | keyvalue">
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h3>{{ category.key }}</h3>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
+      <div *ngFor="let category of objOfCategoryArrays | keyvalue">
+          <mat-expansion-panel class="expansion-panel">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h4>{{ category.key }}</h4>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
 
-        <div class="row" *ngFor="let question of category.value">
-          <div class="col-8">{{ question.content }}</div>
-          <div class="col-4" *ngIf="userIsAuthenticated && userId" align="end">
-            <mat-slide-toggle
-              [checked]="questionPresence[question.id]"
-              (toggleChange)="toggleTracking(
-                questionPresence[question.id],
-                userId,
-                question.id,
-                question.title,
-                question.content,
-                question.category,
-                question.type,
-                question.choices
-              )"
-              ></mat-slide-toggle>
-          </div>
-        </div>
+              <div class="row question-row align-items-center" *ngFor="let question of category.value">
+                <div class="col-8"><h5>{{ question.content }}</h5></div>
+                <div class="col-4" *ngIf="userIsAuthenticated && userId" align="end">
+                  <mat-slide-toggle
+                    [checked]="questionPresence[question.id]"
+                    (toggleChange)="toggleTracking(
+                      questionPresence[question.id],
+                      userId,
+                      question.id,
+                      question.title,
+                      question.content,
+                      question.category,
+                      question.type,
+                      question.choices
+                    )"
+                    ></mat-slide-toggle>
+                </div>
+              </div>
 
-      </mat-expansion-panel>
+            </mat-expansion-panel>
+      </div>
+
+      <div class="row bottom-right-buttons">
+          <button mat-raised-button color="warn" (click)="backClicked()">Back</button>
+      </div>
+    </mat-card>
+  </div>
 </div>
 
-<div class="row bottom-right-buttons">
-    <button mat-raised-button color="warn" (click)="backClicked()">Back</button>
-</div>
 
