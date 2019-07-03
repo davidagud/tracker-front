@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
   <span *ngIf="!userIsAuthenticated">
     <a mat-button class="logo" routerLink="/">tracker</a>
   </span>
@@ -26,4 +26,54 @@
       <a mat-button *ngIf="userIsAuthenticated" (click)="onLogout()">Logout</a>
     </li>
   </ul>
-</mat-toolbar>
+</mat-toolbar> -->
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+  <span *ngIf="!userIsAuthenticated">
+    <a mat-button class="logo" routerLink="/">tracker</a>
+  </span>
+  <span *ngIf="userIsAuthenticated">
+    <a mat-button class="logo" [routerLink]="['/questions', userId, 'today']">tracker</a>
+  </span>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <span class="spacer"></span>
+    <ul class="links">
+      <li *ngIf="userIsAuthenticated">
+        <a mat-button class="call-to-action-button" [routerLink]="['/questions', userId, 'today']" routerLinkActive="call-to-action-active">Track</a>
+      </li>
+      <li *ngIf="userIsAuthenticated">
+          <a mat-button routerLink="/edit" routerLinkActive="link-active" [routerLinkActiveOptions]="{exact: true}">Questions</a>
+        </li>
+      <li *ngIf="userIsAuthenticated">
+        <a mat-button [routerLink]="['/responses', userId]" routerLinkActive="link-active">Data</a>
+      </li>
+      <li>
+        <a mat-button class="call-to-action-button" *ngIf="!userIsAuthenticated"  routerLink="/login" routerLinkActive="call-to-action-active">Log In</a>
+      </li>
+      <li>
+        <a mat-button *ngIf="!userIsAuthenticated" routerLink="/signup" routerLinkActive="link-active">Sign Up</a>
+      </li>
+      <li>
+        <a mat-button *ngIf="userIsAuthenticated" (click)="onLogout()">Logout</a>
+      </li>
+    </ul>
+    <!-- <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul> -->
+  </div>
+</nav>

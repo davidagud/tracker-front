@@ -1,8 +1,14 @@
+.navbar {
+  min-height: 62px;
+}
+
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 a {

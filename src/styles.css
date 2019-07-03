@@ -13,10 +13,12 @@
 }
 
 .responsive-button {
-  font-size: 3vh!important;
-  height: 7vh!important;
-  line-height: 7vh!important;
-  width: 19vh!important;
+  font-size: 2vw!important;
+  height: 5vw!important;
+  line-height: 5vw!important;
+  width: 12vw!important;
+  min-width: 0!important;
+  padding: 0!important;
 }
 
 .save-button, .edit-button {
@@ -47,9 +49,9 @@ html, body {
 }
 
 .content-frame {
-  width: 60%;
+  width: 80%;
   opacity: .9;
-  margin-left: 20%;
+  margin-left: 10%;
   padding-top: 6vh!important;
   padding-bottom: 6vh!important;
 }
@@ -60,26 +62,28 @@ html, body {
 
 .expansion-panel {
   margin-top: 10px!important;
-  padding: 10px;
+  padding: 1.3vw 1.3vw 0 1.3vw;
 }
 
 .mat-expansion-panel-header {
-  padding: 1vw!important;
+  padding: 1vw 0!important;
   height: 5vh!important;
+  margin-bottom: 1.3vw;
 }
 
 .mat-expansion-panel-header h4 {
-  /* margin-bottom: 0; */
-  margin-bottom: -1vh;
+  margin-bottom: -.3vw;
+  margin-top: .5vw;
 }
 
 .mat-expansion-panel-body {
   padding: 0!important;
-  margin-top: 1vh;
+  /* margin-top: -3vh; */
+  margin-bottom: 1.2vw;
 }
 
 .expansion-panel-form-field * {
-  font-size: 2.5vh!important;
+  font-size: 2vw!important;
 }
 
 .mat-elevation-z8, .expansion-panel {
@@ -93,22 +97,22 @@ tr.mat-row:last-of-type * {
 }
 
 /* Typography */
-h1 { font-size: 10vh!important }
+h1 { font-size: 8vw!important }
 
-h2 { font-size: 7vh!important }
+h2 { font-size: 5vw!important }
 
-h3 { font-size: 5vh!important }
+h3 { font-size: 3.5vw!important }
 
-h4 { font-size: 4vh!important }
+h4 { font-size: 3vw!important }
 
-h5 { font-size: 3vh!important; font-weight: 400!important }
+h5 { font-size: 2vw!important; font-weight: 400!important }
 
-h6 {}
+h6 { font-size: 1vw!important }
 
 p {}
 
 .mat-form-field {
-  font-size: 2.5vh!important;
+  font-size: 2vw!important;
 }
 
 h4, .signup-button, .page-title {
@@ -125,4 +129,50 @@ h1 {
 
 h4, h5, h6, p {
   color: rgba(0, 0, 0, 0.8)!important;
+}
+
+@media (max-width: 576px) {
+  .content-frame {
+    width: 90%;
+    margin-left: 5%;
+  }
+
+  h1 { font-size: 46px!important }
+
+  h2 { font-size: 32px!important }
+
+  h3 { font-size: 20px!important }
+
+  h4 { font-size: 18px!important }
+
+  h5 { font-size: 12px!important }
+
+  h6 { font-size: 10px!important }
+
+  .mat-form-field {
+    font-size: 13px!important;
+  }
+
+  .responsive-button {
+    font-size: 11px!important;
+    height: 28px!important;
+    line-height: 13px!important;
+    width: 68px!important;
+  }
+
+  .expansion-panel-form-field * {
+    font-size: 12px!important;
+  }
+
+  .expansion-panel {
+    padding: 12px 12px 0 12px;
+  }
+
+  .mat-calendar {
+    zoom: .75;
+  }
+
+  .mat-expansion-panel-header {
+    margin-bottom: 12px;
+  }
 }

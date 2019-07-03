@@ -9,11 +9,11 @@
 }
 
 .signup-button {
-  padding: 2vh 4vh;
+  padding: 2vw 4vw;
   color: white;
   background-color: rgba(0, 0, 0, 0);
-  border: 1vh solid white;
-  border-radius: 10vh!important;
+  border: .5vw solid white;
+  border-radius: 10vw!important;
 }
 
 .signup-button h3 {
@@ -26,4 +26,14 @@ h1 {
 
 .highlight {
   color: #FC4482;
+}
+
+@media (max-width: 576px) {
+  .signup-button {
+    padding: 11px 23px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+    border: 3px solid white;
+    border-radius: 10vw!important;
+  }
 }

@@ -3,10 +3,24 @@
 }
 
 .date-input {
-  width: 100px;
+  width: 10vw;
   margin-right: 10px;
 }
 
 app-dynamic-form-questions {
   width: 100%;
+}
+
+.form-row:first-of-type {
+  margin-top: -3vh!important;
+}
+
+@media (max-width: 576px) {
+  .date-input {
+    width: 70px;
+  }
+
+  .form-row:first-of-type {
+    margin-top: 0!important;
+  }
 }

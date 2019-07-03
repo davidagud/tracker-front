@@ -1,9 +1,9 @@
-<div [formGroup]="form" class="row container justify-content-between">
+<div [formGroup]="form" class="row container align-items-center justify-content-between">
   <!-- <label [attr.for]="question.id">{{ question.content }}</label> -->
 
-  <h5>{{ question.content }}</h5>
+  <h5 class="col-12 col-sm-6">{{ question.content }}</h5>
 
-  <div [ngSwitch]="question.type">
+  <div [ngSwitch]="question.type" class="col-12 col-sm-6">
 
     <mat-form-field class="expansion-panel-form-field" *ngSwitchCase="'free-response'">
       <input

@@ -1,13 +1,18 @@
 .date-input {
-  width: 100px;
+  width: 10vw;
 }
 
-.date-input-group {
-  margin-right: 20px;
+mat-form-field {
+  width: 100%!important;
+  text-align: center;
 }
 
 .submit-button {
   margin-top: .4375em;
+}
+
+.mat-expansion-panel-content {
+  margin-top: 30px;
 }
 
 table {
@@ -23,12 +28,20 @@ table {
   overflow: auto;
 }
 
+.question-table, .mat-expansion-panel-header {
+  margin-bottom: 1.3vw;
+}
+
 .mat-column-response {
   width: 80%;
 }
 
 th.mat-header-cell {
   border-bottom: none;
+}
+
+th.mat-header-cell {
+  font-size: 2vw!important;
 }
 
 th.mat-header-cell::after {
@@ -38,4 +51,40 @@ th.mat-header-cell::after {
   bottom: 0;
   width:100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.3)!important;
+}
+
+mat-panel-title h5 {
+  font-weight: 500!important;
+}
+
+h5 {
+  margin: 0!important;
+}
+
+.mat-header-row, .mat-row {
+  height: auto;
+}
+
+.mat-header-cell, .mat-cell {
+  padding: 2vh 2vw!important;
+}
+
+@media (max-width: 576px) {
+  .responsive-button {
+    font-size: 9px!important;
+  }
+
+  th.mat-header-cell {
+    font-size: 12px!important;
+  }
+
+  .question-table, .mat-expansion-panel-header {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 400px) {
+  .col-6, .col-4 {
+    padding: 5px!important;
+  }
 }
