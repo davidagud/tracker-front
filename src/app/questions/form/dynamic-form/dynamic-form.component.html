@@ -1,0 +1,42 @@
+<div class="background">
+  <mat-card class="content-frame">
+    <div class="content">
+      <h2 class="page-title">Track your day</h2>
+      <form (ngSubmit)="onSubmit()" [formGroup]="form">
+        <mat-form-field  (click)="datePicker.open()" class="date-input">
+          <input
+            matInput
+            [matDatepicker]="datePicker"
+            formControlName="date"
+            (ngModelChange)="dateChange($event)"
+            [readonly]="true"
+            placeholder="Track"
+          >
+        </mat-form-field>
+          <mat-datepicker-toggle [for]="datePicker"></mat-datepicker-toggle>
+          <mat-datepicker #datePicker></mat-datepicker>
+
+        <div *ngFor="let category of objOfCategoryArrays | keyvalue">
+          <mat-expansion-panel class="expansion-panel">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <h4>{{ category.key }}</h4>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div *ngFor="let question of category.value" class="form-row">
+                <app-dynamic-form-questions [question]="question" [form]="form"></app-dynamic-form-questions>
+              </div>
+
+            </mat-expansion-panel>
+        </div>
+
+
+        <div class="row bottom-right-buttons">
+          <button mat-raised-button class="save-button" color="primary" type="submit" [disabled]="!form.valid">Save</button>
+          <button mat-raised-button class="edit-button" color="warn" routerLink="/edit">Edit Questions</button>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>

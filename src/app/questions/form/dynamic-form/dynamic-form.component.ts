@@ -1,4 +1,4 @@
-import { UserAnswersService } from '../../questions/services/user-answers.service';
+import { UserAnswersService } from '../../services/user-answers.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionBase } from '../question-base';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -18,25 +18,26 @@ export class DynamicFormComponent implements OnInit {
   form: FormGroup;
   formObject: object;
   resolvedData;
+  questionPresence = {};
   userId;
   objOfCategoryArrays;
 
   constructor(
     private userAnswersService: UserAnswersService,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
     this.userId = this.authService.getUserId();
 
+    this.questionPresence = this.route.snapshot.data.presenceData;
+
     this.resolvedData = [...this.route.snapshot.data.data];
-    console.log('Important', this.resolvedData);
+    console.log('Resolved Data - Resolved QP', this.resolvedData, this.questionPresence);
 
     const todaysDate = new Date((new Date()).setHours( 0, 0, 0, 0));
-    const todaysDateParsed = Date.parse(todaysDate.toString());
-
-    console.log('DFC DATE', todaysDateParsed);
+    // const todaysDateParsed = Date.parse(todaysDate.toString());
 
     this.formCreation(this.resolvedData, todaysDate);
   }
@@ -45,22 +46,19 @@ export class DynamicFormComponent implements OnInit {
     const group = {};
 
     console.log('route data', this.resolvedData);
-
+    console.log('Data source', dataSource);
     this.userQuestions = dataSource;
 
-    if (this.userQuestions !== this.resolvedData) {
-      this.resolvedData.forEach(resolvedDataQuestionObj => {
-        const match = this.userQuestions.every(returnedQuestionObj => {
-          return returnedQuestionObj.id !== resolvedDataQuestionObj.id;
-        });
-        if (match) {
-          console.log('Push', resolvedDataQuestionObj.id);
-          this.userQuestions.push(resolvedDataQuestionObj);
-        } else {
-          console.log('Dont push', resolvedDataQuestionObj.id);
-        }
-      });
-    }
+    // if (this.userQuestions !== this.resolvedData) {
+    //   this.resolvedData.forEach(resolvedDataQuestionObj => {
+    //     const match = this.userQuestions.every(returnedQuestionObj => {
+    //       return returnedQuestionObj.id !== resolvedDataQuestionObj.id;
+    //     });
+    //     if (match) {
+    //       this.userQuestions.push(resolvedDataQuestionObj);
+    //     }
+    //   });
+    // }
 
     console.log('Questions', this.userQuestions);
 
@@ -73,7 +71,6 @@ export class DynamicFormComponent implements OnInit {
         this.objOfCategoryArrays[category] = [];
       }
       this.objOfCategoryArrays[category].push(question);
-      console.log('Pushed', question);
 
       group[question.id] = new FormControl(question.answer || '');
     });
@@ -94,7 +91,6 @@ export class DynamicFormComponent implements OnInit {
 
   async dateChange(event) {
     const enteredDate = Date.parse(event);
-    console.log('DFC dateChange function', enteredDate);
     const foundDate = await this.userAnswersService.getDayResponse(this.userId, enteredDate);
     if (foundDate !== null) {
       const dateFoundQuestionsArray = [];
@@ -104,16 +100,33 @@ export class DynamicFormComponent implements OnInit {
           dateFoundQuestionsArray.push(foundDate[enteredDate][key]);
         }
       }
-      this.dateFound(enteredDate, dateFoundQuestionsArray);
+
+      this.resolvedData.forEach(resolvedQuestion => {
+        if (this.questionPresence[resolvedQuestion.id]) {
+          console.log('Present');
+          dateFoundQuestionsArray.push(resolvedQuestion);
+        } else {
+          console.log('Not present');
+        }
+      });
+
+      this.dateFound(dateFoundQuestionsArray, enteredDate);
     } else {
-      this.formCreation(this.resolvedData, event);
+      const resolvedDataUpdated = [];
+      this.resolvedData.forEach(resolvedQuestion => {
+        if (this.questionPresence[resolvedQuestion.id]) {
+          console.log('Present');
+          resolvedDataUpdated.push(resolvedQuestion);
+        } else {
+          console.log('Not present');
+        }
+      });
+      this.formCreation(resolvedDataUpdated, event);
     }
   }
 
-  dateFound(enteredDate, dayData) {
-
+  dateFound(dayData, enteredDate) {
     const extractedDate = new Date(enteredDate);
-    console.log('DFC dateFound function', extractedDate);
 
     this.formCreation(dayData, extractedDate);
   }

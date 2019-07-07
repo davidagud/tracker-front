@@ -34,12 +34,10 @@ export class AuthService {
   }
 
   getIsAuth() {
-    console.log('Is auth?', this.isAuthenticated);
     return this.isAuthenticated;
   }
 
   getUserId() {
-    console.log('UserId:', this.userId);
     return this.userId;
   }
 
@@ -66,8 +64,6 @@ export class AuthService {
           this.userIdListener.next(this.userId);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-          console.log(expirationDate);
-          console.log(response.userId);
           this.saveAuthData(token, expirationDate, this.userId);
           this.router.navigate(['/questions/' + this.userId + '/today']);
         }
@@ -85,7 +81,6 @@ export class AuthService {
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
     this.userId = undefined;
-    console.log('logged out');
     this.router.navigate(['/login']);
   }
 
@@ -96,7 +91,6 @@ export class AuthService {
   }
 
   private setAuthTimer(duration: number) {
-    console.log('Setting timer: ' + duration);
     this.tokenTimer = setTimeout(() => {
       this.logout();
     }, duration * 1000);

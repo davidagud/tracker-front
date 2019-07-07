@@ -23,8 +23,6 @@ export class FormQuestionsResolverService implements Resolve<any> {
     const todaysDate = new Date((new Date()).setHours( 0, 0, 0, 0));
     const todaysDateParsed = Date.parse(todaysDate.toString());
 
-    console.log('FQ Resolver Service Date', todaysDateParsed);
-
     const foundDateFunction = new Promise((resolve, reject) => {
       this.userAnswersService.getDayResponse(this.userId, todaysDateParsed).then(foundDate => {
         if (foundDate !== null) {
@@ -36,10 +34,24 @@ export class FormQuestionsResolverService implements Resolve<any> {
             }
           }
           this.data = dateFoundQuestionsArray;
-          resolve(this.data);
+          this.questionsService.getQuestionsPreSubscribe(this.userId).toPromise().then(result => {
+            result.forEach(question => {
+              const presence = this.data.some(dataQuestion => {
+                return question.id == dataQuestion.id;
+              });
+              if (!presence) {
+                this.data.push(question);
+              }
+            });
+            console.log('Hoop', this.data);
+            resolve(this.data);
+          });
+          // console.log('Hoop', this.data);
+          // resolve(this.data);
         } else {
           this.questionsService.getQuestionsPreSubscribe(this.userId).toPromise().then(result => {
             this.data = result;
+            console.log('Hop', this.data);
             resolve(this.data);
           });
         }

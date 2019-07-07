@@ -5,10 +5,10 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
-import { DayComponent } from './questions/day/day.component';
 import { FormQuestionsResolverService } from './questions/services/form-questions-resolver.service';
 import { PresenceResolverService } from './questions/services/presence-resolver.service';
 import { ResponsesComponent } from './questions/responses/responses.component';
+import { DynamicFormComponent } from './questions/form/dynamic-form/dynamic-form.component';
 
 const routes: Routes = [
   { path: '',
@@ -22,9 +22,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'questions/:userId/today',
-    component: DayComponent,
+    component: DynamicFormComponent,
     canActivate: [AuthGuard],
-    resolve: { data: FormQuestionsResolverService }
+    resolve: { data: FormQuestionsResolverService, presenceData: PresenceResolverService }
   },
   { path: 'responses/:userId',
     component: ResponsesComponent,
