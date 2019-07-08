@@ -43,7 +43,6 @@ export class QuestionsService {
         this.questionsUpdated.next({
           questions: [...this.questions]
         });
-        console.log(this.questions);
       });
   }
 
@@ -70,19 +69,15 @@ export class QuestionsService {
       type: questionType,
       choices: questionChoices
     };
-    console.log('Adding question', questionData);
     this.http.put<{message: string, question: Question}>(BACKEND_URL, questionData)
       .subscribe((responseData) => {
-        console.log('Response data', responseData);
         this.getQuestions(userId);
       });
   }
 
   deleteQuestion(userId: string, questionId: string) {
-    console.log('service delete');
     this.http.delete(BACKEND_URL + userId + '/' + questionId)
       .subscribe((responseData) => {
-        console.log('Response data', responseData);
         this.getQuestions(userId);
       });
   }

@@ -44,9 +44,7 @@ export class DefaultQuestionsComponent implements OnInit, OnDestroy {
             this.objOfCategoryArrays[category] = [];
           }
           this.objOfCategoryArrays[category].push(question);
-          console.log('Pushed');
         });
-        console.log('CatArray', this.objOfCategoryArrays);
       });
 
     this.presenceService.getQuestionPresenceUpdated().subscribe((questionPresenceObj) => {
@@ -72,7 +70,6 @@ export class DefaultQuestionsComponent implements OnInit, OnDestroy {
       // Delete
       this.questionsService.deleteQuestion(userId, questionId);
       this.presenceService.removeFromQP(questionId);
-      console.log('deleted');
     }
     if (!questionPresence) {
       // Add

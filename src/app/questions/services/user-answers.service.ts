@@ -13,10 +13,8 @@ export class UserAnswersService {
   constructor(private http: HttpClient) {}
 
   submitAnswers(formResponse) {
-    console.log('UAS', formResponse);
     this.http.put<{message: string}>(BACKEND_URL + 'submit', formResponse)
       .subscribe((responseData) => {
-        console.log('Response message:', responseData.message);
       });
   }
 

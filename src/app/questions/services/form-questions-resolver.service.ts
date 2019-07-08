@@ -43,15 +43,11 @@ export class FormQuestionsResolverService implements Resolve<any> {
                 this.data.push(question);
               }
             });
-            console.log('Hoop', this.data);
             resolve(this.data);
           });
-          // console.log('Hoop', this.data);
-          // resolve(this.data);
         } else {
           this.questionsService.getQuestionsPreSubscribe(this.userId).toPromise().then(result => {
             this.data = result;
-            console.log('Hop', this.data);
             resolve(this.data);
           });
         }

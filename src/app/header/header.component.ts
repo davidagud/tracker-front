@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit {
   onLogout() {
     this.authService.logout();
     this.userId = this.authService.getUserId();
-    console.log('header logout', this.userId, this.userIsAuthenticated);
   }
 
 }

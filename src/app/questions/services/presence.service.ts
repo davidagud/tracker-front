@@ -32,22 +32,17 @@ export class PresenceService {
         }
       });
     });
-
-    console.log('QP', this.questionPresence);
-
     return this.questionPresence;
   }
 
   removeFromQP(questionId) {
     this.questionPresence[questionId] = false;
     this.questionPresenceUpdated[questionId] = false;
-    console.log('QP remove', this.questionPresence);
   }
 
   addToQP(questionId) {
     this.questionPresence[questionId] = true;
     this.questionPresenceUpdated[questionId] = true;
-    console.log('QP add', this.questionPresence);
   }
 
   getQuestionPresenceUpdated() {

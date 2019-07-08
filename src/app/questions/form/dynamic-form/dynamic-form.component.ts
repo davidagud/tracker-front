@@ -34,7 +34,6 @@ export class DynamicFormComponent implements OnInit {
     this.questionPresence = this.route.snapshot.data.presenceData;
 
     this.resolvedData = [...this.route.snapshot.data.data];
-    console.log('Resolved Data - Resolved QP', this.resolvedData, this.questionPresence);
 
     const todaysDate = new Date((new Date()).setHours( 0, 0, 0, 0));
     // const todaysDateParsed = Date.parse(todaysDate.toString());
@@ -45,22 +44,7 @@ export class DynamicFormComponent implements OnInit {
   formCreation(dataSource, date) {
     const group = {};
 
-    console.log('route data', this.resolvedData);
-    console.log('Data source', dataSource);
     this.userQuestions = dataSource;
-
-    // if (this.userQuestions !== this.resolvedData) {
-    //   this.resolvedData.forEach(resolvedDataQuestionObj => {
-    //     const match = this.userQuestions.every(returnedQuestionObj => {
-    //       return returnedQuestionObj.id !== resolvedDataQuestionObj.id;
-    //     });
-    //     if (match) {
-    //       this.userQuestions.push(resolvedDataQuestionObj);
-    //     }
-    //   });
-    // }
-
-    console.log('Questions', this.userQuestions);
 
     // Just added
     this.objOfCategoryArrays = {};
@@ -94,6 +78,7 @@ export class DynamicFormComponent implements OnInit {
     const foundDate = await this.userAnswersService.getDayResponse(this.userId, enteredDate);
     if (foundDate !== null) {
       const dateFoundQuestionsArray = [];
+
       for (const key in foundDate[enteredDate]) {
         if (foundDate[enteredDate].hasOwnProperty(key)) {
           foundDate[enteredDate][key].id = key;
@@ -102,11 +87,11 @@ export class DynamicFormComponent implements OnInit {
       }
 
       this.resolvedData.forEach(resolvedQuestion => {
-        if (this.questionPresence[resolvedQuestion.id]) {
-          console.log('Present');
+        const presence = dateFoundQuestionsArray.every(question => {
+          return question.id !== resolvedQuestion.id;
+        });
+        if (presence) {
           dateFoundQuestionsArray.push(resolvedQuestion);
-        } else {
-          console.log('Not present');
         }
       });
 
@@ -115,10 +100,8 @@ export class DynamicFormComponent implements OnInit {
       const resolvedDataUpdated = [];
       this.resolvedData.forEach(resolvedQuestion => {
         if (this.questionPresence[resolvedQuestion.id]) {
-          console.log('Present');
+          delete resolvedQuestion.answer;
           resolvedDataUpdated.push(resolvedQuestion);
-        } else {
-          console.log('Not present');
         }
       });
       this.formCreation(resolvedDataUpdated, event);
