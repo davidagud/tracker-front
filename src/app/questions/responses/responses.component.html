@@ -61,7 +61,13 @@
                   <div *ngIf="answer[0] == 'null'">
                     <h5>No response</h5>
                   </div>
-                  <div *ngIf="answer[0] != 'null'">
+                  <div *ngIf="answer[0] == 'true'">
+                    <h5>Yes</h5>
+                  </div>
+                  <div *ngIf="answer[0] == 'false'">
+                    <h5>No</h5>
+                  </div>
+                  <div *ngIf="answer[0] != 'null' && answer[0] != 'true' && answer[0] != 'false'">
                     <h5>{{answer[0]}}</h5>
                   </div>
                 </td>

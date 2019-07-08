@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 const BACKEND_URL = environment.apiUrl + '/questions/';
 
@@ -10,11 +11,15 @@ const BACKEND_URL = environment.apiUrl + '/questions/';
 export class UserAnswersService {
   returnedDayResponse;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
   submitAnswers(formResponse) {
     this.http.put<{message: string}>(BACKEND_URL + 'submit', formResponse)
       .subscribe((responseData) => {
+        if (responseData.message == 'Updated day entry successfully') {
+          console.log(responseData);
+          this.snackBar.open('Successfully saved responses', 'Dismiss', {duration: 3000});
+        }
       });
   }
 

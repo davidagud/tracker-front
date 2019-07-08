@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { AuthService } from '../auth.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-signup',
@@ -10,7 +11,7 @@ import { AuthService } from '../auth.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -20,8 +21,8 @@ export class SignupComponent implements OnInit {
       return;
     }
     if (form.value.password !== form.value.passwordCheck) {
+      this.snackBar.open('Passwords don\'t match.', 'Dismiss', {duration: 3000});
       return;
-      //alert user that passwords don't match
     }
     this.authService.createUser(form.value.email, form.value.password);
   }

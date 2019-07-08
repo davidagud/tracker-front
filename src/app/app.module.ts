@@ -13,6 +13,7 @@ import {
   MatProgressBarModule,
   MatSelectModule,
   MatTableModule,
+  MatSnackBarModule
 } from '@angular/material';
 // import { AuthModule } from './auth/auth.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -53,7 +54,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     MatSlideToggleModule,
     MatProgressBarModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

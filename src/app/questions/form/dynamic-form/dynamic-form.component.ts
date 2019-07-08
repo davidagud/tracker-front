@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { UserAnswersService } from '../../services/user-answers.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { QuestionBase } from '../question-base';
@@ -26,6 +27,7 @@ export class DynamicFormComponent implements OnInit {
     private userAnswersService: UserAnswersService,
     private authService: AuthService,
     private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -46,7 +48,6 @@ export class DynamicFormComponent implements OnInit {
 
     this.userQuestions = dataSource;
 
-    // Just added
     this.objOfCategoryArrays = {};
 
     this.userQuestions.forEach(question => {
@@ -58,7 +59,6 @@ export class DynamicFormComponent implements OnInit {
 
       group[question.id] = new FormControl(question.answer || '');
     });
-    // End just added
 
     this.form = new FormGroup(group);
 
@@ -96,6 +96,7 @@ export class DynamicFormComponent implements OnInit {
       });
 
       this.dateFound(dateFoundQuestionsArray, enteredDate);
+      this.snackBar.open('Previous responses for this day loaded!', 'Dismiss', {duration: 4000});
     } else {
       const resolvedDataUpdated = [];
       this.resolvedData.forEach(resolvedQuestion => {
@@ -105,6 +106,7 @@ export class DynamicFormComponent implements OnInit {
         }
       });
       this.formCreation(resolvedDataUpdated, event);
+      this.snackBar.open('No previous responses for this day found!', 'Dismiss', {duration: 4000});
     }
   }
 

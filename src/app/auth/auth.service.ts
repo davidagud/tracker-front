@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 
 import { AuthData } from './auth-data.model';
 import { environment } from 'src/environments/environment';
+import { MatSnackBar } from '@angular/material';
 
 const BACKEND_URL = environment.apiUrl + '/user/';
 
@@ -19,7 +20,7 @@ export class AuthService {
   private authStatusListener = new Subject<boolean>();
   private userIdListener = new Subject<any>();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
 
   createUser(email: string, password: string) {
     const authData: AuthData = {email, password};
@@ -68,6 +69,7 @@ export class AuthService {
           this.router.navigate(['/questions/' + this.userId + '/today']);
         }
       }, error => {
+        this.snackBar.open('Email or password is incorrect.', 'Dismiss', {duration: 3000});
         this.authStatusListener.next(false);
         this.userIdListener.next(null);
       });
@@ -82,6 +84,7 @@ export class AuthService {
     this.clearAuthData();
     this.userId = undefined;
     this.router.navigate(['/login']);
+    this.snackBar.open('Successfully logged out!', 'Dismiss', {duration: 3000});
   }
 
   private saveAuthData(token: string, expirationDate: Date, userId: any) {
