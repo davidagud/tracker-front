@@ -18,7 +18,6 @@ export class UserAnswersService {
     this.http.put<{message: string}>(BACKEND_URL + 'submit', formResponse)
       .subscribe((responseData) => {
         if (responseData.message == 'Updated day entry successfully') {
-          console.log(responseData);
           this.snackBar.open('Successfully saved responses', 'Dismiss', {duration: 3000});
         }
       });
