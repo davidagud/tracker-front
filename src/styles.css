@@ -53,10 +53,6 @@ html, body {
   margin-bottom: 1.2vw;
 }
 
-.expansion-panel-form-field * {
-  font-size: 2vw!important;
-}
-
 .mat-elevation-z8, .expansion-panel {
   box-shadow: none!important;
   border: 2px solid rgba(0, 0, 0, 0.3)!important;
@@ -76,7 +72,7 @@ tr.mat-row:last-of-type * {
 /* Buttons */
 
 .mat-button, .mat-raised-button {
-  border-radius: 30px!important;
+  border-radius: 7vw!important;
 }
 
 .bottom-right-buttons {
@@ -86,12 +82,12 @@ tr.mat-row:last-of-type * {
 }
 
 .responsive-button {
-  height: 5vw!important;
-  line-height: 5vw!important;
-  width: 12vw!important;
+  height: 4vw!important;
+  line-height: 2vw!important;
+  width: 8vw!important;
   min-width: 0!important;
   padding: 0!important;
-  font-size: 2vw!important;
+  font-size: 1.5vw!important;
 }
 
 .save-button, .edit-button {
@@ -104,20 +100,24 @@ tr.mat-row:last-of-type * {
 
 h1 { font-size: 8vw!important }
 
-h2 { font-size: 5vw!important }
+h2 { font-size: 3vw!important }
 
-h3 { font-size: 3.5vw!important }
+h3 { font-size: 2.5vw!important }
 
-h4 { font-size: 3vw!important }
+h4 { font-size: 2vw!important }
 
-h5 { font-size: 2vw!important; font-weight: 400!important }
+h5 { font-size: 1.5vw!important; font-weight: 400!important }
 
-h6 { font-size: 1vw!important }
+h6 { font-size: 1.5vw!important }
 
 p {}
 
 .mat-form-field {
-  font-size: 2vw!important;
+  font-size: 1.5vw!important;
+}
+
+.expansion-panel-form-field * {
+  font-size: 1.5vw!important;
 }
 
 h1 {
@@ -163,7 +163,7 @@ h4, h5, h6, p {
   .responsive-button {
     font-size: 11px!important;
     height: 28px!important;
-    line-height: 13px!important;
+    line-height: 14px!important;
     width: 68px!important;
   }
 

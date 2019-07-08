@@ -1,3 +1,7 @@
+mat-progress-bar {
+  margin-top: 5vh;
+}
+
 table {
   width: 100%;
 }
@@ -17,10 +21,6 @@ mat-form-field {
 
 th.mat-header-cell {
   border-bottom: none;
-}
-
-th.mat-header-cell {
-  font-size: 2vw!important;
 }
 
 th.mat-header-cell::after {
@@ -63,9 +63,15 @@ h5 {
 
 .submit-button {
   margin-top: .4375em;
+  width: 10vw!important;
+  min-width: 66px!important;
 }
 
 /* Typography */
+
+th.mat-header-cell {
+  font-size: 1.5vw!important;
+}
 
 mat-panel-title h5 {
   font-weight: 500!important;
