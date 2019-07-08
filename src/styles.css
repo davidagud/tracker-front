@@ -32,11 +32,11 @@ html, body {
 }
 
 .background {
-  background-image: url('./assets/nate-bell.jpg');
+  background-image: url('./assets/bike.jpg');
   background-size: cover;
   background-position: center;
   background-color: rgba(255, 255, 255, 0.3);
-  background-blend-mode: lighten;
+  background-blend-mode: darken;
   min-height: 100%;
   padding-top: 10vh;
   padding-bottom: 10vh;
