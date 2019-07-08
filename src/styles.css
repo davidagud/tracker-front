@@ -2,31 +2,6 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:700|Rubik:900&display=swap');
 
-.mat-button, .mat-raised-button {
-  border-radius: 30px!important;
-}
-
-.bottom-right-buttons {
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
-}
-
-.responsive-button {
-  font-size: 2vw!important;
-  height: 5vw!important;
-  line-height: 5vw!important;
-  width: 12vw!important;
-  min-width: 0!important;
-  padding: 0!important;
-}
-
-.save-button, .edit-button {
-  font-size: 2vh!important;
-  height: 7vh!important;
-  line-height: 7vh!important;
-}
-
 html, body {
   height: 100%;
 }
@@ -56,9 +31,7 @@ html, body {
   padding-bottom: 6vh!important;
 }
 
-.page-title {
-  color: #FC4482;
-}
+/* Expansion Panel */
 
 .expansion-panel {
   margin-top: 10px!important;
@@ -67,7 +40,6 @@ html, body {
 
 .mat-expansion-panel-header {
   padding: 1vw 0!important;
-  height: 5vh!important;
   margin-bottom: 1.3vw;
 }
 
@@ -78,7 +50,6 @@ html, body {
 
 .mat-expansion-panel-body {
   padding: 0!important;
-  /* margin-top: -3vh; */
   margin-bottom: 1.2vw;
 }
 
@@ -92,11 +63,45 @@ html, body {
   border-radius: 3px;
 }
 
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 1em;
+}
+
+/* Mat Table */
+
 tr.mat-row:last-of-type * {
   border-bottom: none;
 }
 
+/* Buttons */
+
+.mat-button, .mat-raised-button {
+  border-radius: 30px!important;
+}
+
+.bottom-right-buttons {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
+
+.responsive-button {
+  height: 5vw!important;
+  line-height: 5vw!important;
+  width: 12vw!important;
+  min-width: 0!important;
+  padding: 0!important;
+  font-size: 2vw!important;
+}
+
+.save-button, .edit-button {
+  height: 7vh!important;
+  line-height: 7vh!important;
+  font-size: 2vh!important;
+}
+
 /* Typography */
+
 h1 { font-size: 8vw!important }
 
 h2 { font-size: 5vw!important }
@@ -115,21 +120,23 @@ p {}
   font-size: 2vw!important;
 }
 
-h4, .signup-button, .page-title {
-  font-family: 'Josefin Sans', sans-serif;
-}
-
 h1 {
   font-family: 'Rubik', sans-serif;
 }
 
-.mat-form-field-appearance-legacy .mat-form-field-wrapper {
-  padding-bottom: 1em;
+h4, .signup-button, .page-title {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.page-title {
+  color: #FC4482;
 }
 
 h4, h5, h6, p {
   color: rgba(0, 0, 0, 0.8)!important;
 }
+
+/* Media */
 
 @media (max-width: 576px) {
   .content-frame {

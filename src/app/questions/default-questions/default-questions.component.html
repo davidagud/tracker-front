@@ -5,13 +5,14 @@
 
       <div *ngFor="let category of objOfCategoryArrays | keyvalue">
           <mat-expansion-panel class="expansion-panel">
-              <mat-expansion-panel-header>
+              <mat-expansion-panel-header collapsedHeight="'5vh'" expandedHeight="'5vh'">
                 <mat-panel-title>
                   <h4>{{ category.key }}</h4>
                 </mat-panel-title>
               </mat-expansion-panel-header>
 
               <div class="row question-row align-items-center" *ngFor="let question of category.value">
+                <hr>
                 <div class="col-8"><h5>{{ question.content }}</h5></div>
                 <div class="col-4" *ngIf="userIsAuthenticated && userId" align="end">
                   <mat-slide-toggle

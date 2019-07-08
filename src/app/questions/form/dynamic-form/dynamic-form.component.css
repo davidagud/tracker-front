@@ -1,3 +1,12 @@
+app-dynamic-form-questions {
+  width: 100%;
+}
+
+hr {
+  width: 110%;
+  margin: .5rem -5%;
+}
+
 .bottom-right-buttons button {
   margin-right: 1vw;
 }
@@ -7,13 +16,7 @@
   margin-right: 10px;
 }
 
-app-dynamic-form-questions {
-  width: 100%;
-}
-
-.form-row:first-of-type {
-  margin-top: -3vh!important;
-}
+/* Media */
 
 @media (max-width: 576px) {
   .date-input {

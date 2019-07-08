@@ -18,13 +18,14 @@
 
         <div *ngFor="let category of objOfCategoryArrays | keyvalue">
           <mat-expansion-panel class="expansion-panel">
-              <mat-expansion-panel-header>
+              <mat-expansion-panel-header collapsedHeight="'5vh'" expandedHeight="'5vh'">
                 <mat-panel-title>
                   <h4>{{ category.key }}</h4>
                 </mat-panel-title>
               </mat-expansion-panel-header>
 
               <div *ngFor="let question of category.value" class="form-row">
+                <hr>
                 <app-dynamic-form-questions [question]="question" [form]="form"></app-dynamic-form-questions>
               </div>
 

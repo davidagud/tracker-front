@@ -1,5 +1,5 @@
-.input {
-  margin-right: auto;
+mat-form-field-infix {
+  border-top: none!important;
 }
 
 .row {
@@ -8,15 +8,18 @@
   padding-left: 5px!important;
 }
 
-.expansion-panel-form-field {
-  width: 100%;
-}
-
 .col-12, .col-sm-6 {
   padding-right: 0;
   padding-left: 0;
 }
 
-mat-form-field-infix {
-  border-top: none!important;
+.expansion-panel-form-field {
+  width: 100%;
 }
+
+.input {
+  margin-right: auto;
+}
+
+
+

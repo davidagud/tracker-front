@@ -1,5 +1,5 @@
-.date-input {
-  width: 10vw;
+table {
+  width: 100%;
 }
 
 mat-form-field {
@@ -7,33 +7,12 @@ mat-form-field {
   text-align: center;
 }
 
-.submit-button {
-  margin-top: .4375em;
+.date-input {
+  width: 10vw;
 }
 
-.mat-expansion-panel-content {
-  margin-top: 30px;
-}
-
-table {
-  width: 100%;
-}
-
-.question {
-  margin-top: 30px;
-}
-
-.question-table {
-  max-height: 200px;
-  overflow: auto;
-}
-
-.question-table, .mat-expansion-panel-header {
-  margin-bottom: 1.3vw;
-}
-
-.mat-column-response {
-  width: 80%;
+.mat-header-cell, .mat-cell {
+  padding: 2vh 2vw!important;
 }
 
 th.mat-header-cell {
@@ -53,21 +32,46 @@ th.mat-header-cell::after {
   border-bottom: 1px solid rgba(0, 0, 0, 0.3)!important;
 }
 
-mat-panel-title h5 {
-  font-weight: 500!important;
+.mat-header-row, .mat-row {
+  height: auto;
+}
+
+.mat-expansion-panel-content {
+  margin-top: 30px;
+}
+
+.question-table, .mat-expansion-panel-header {
+  margin-bottom: 1.3vw;
+}
+
+.question-table {
+  max-height: 200px;
+  overflow: auto;
+}
+
+.question {
+  margin-top: 30px;
+}
+
+.mat-column-response {
+  width: 80%;
 }
 
 h5 {
   margin: 0!important;
 }
 
-.mat-header-row, .mat-row {
-  height: auto;
+.submit-button {
+  margin-top: .4375em;
 }
 
-.mat-header-cell, .mat-cell {
-  padding: 2vh 2vw!important;
+/* Typography */
+
+mat-panel-title h5 {
+  font-weight: 500!important;
 }
+
+/* Media */
 
 @media (max-width: 576px) {
   .responsive-button {
