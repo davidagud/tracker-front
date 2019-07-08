@@ -1,6 +1,6 @@
 <div class="background">
-  <div class="content-frame">
-    <mat-card class="content">
+  <mat-card class="content-frame">
+    <div class="content">
       <h2 class="page-title">Select questions to track</h2>
 
       <div *ngFor="let category of objOfCategoryArrays | keyvalue">
@@ -36,8 +36,8 @@
       <div class="row bottom-right-buttons">
           <button mat-raised-button color="warn" (click)="backClicked()">Back</button>
       </div>
-    </mat-card>
-  </div>
+    </div>
+  </mat-card>
 </div>
 
 

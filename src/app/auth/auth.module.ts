@@ -1,9 +1,10 @@
-import { LoginComponent } from './login/login.component';
-import { MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { NgModule } from '@angular/core';
-import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -11,11 +12,8 @@ import { CommonModule } from '@angular/common';
     LoginComponent
   ],
   imports: [
-    MatCardModule,
     FormsModule,
-    MatFormFieldModule,
-    CommonModule,
-    MatInputModule
+    CommonModule
   ]
 })
 export class AuthModule {}

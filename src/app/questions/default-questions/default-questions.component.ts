@@ -1,12 +1,14 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
+
 import { PresenceService } from '../services/presence.service';
 import { QuestionsService } from '../services/questions.service';
-import { Component, OnInit, OnDestroy, OnChanges, Input } from '@angular/core';
-import { Question } from '../question.model';
 import { DefaultQuestionsService } from '../services/default-questions.service';
-import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Location } from '@angular/common';
+
+import { Question } from '../question.model';
 
 @Component({
   selector: 'app-default-questions',

@@ -1,5 +1,4 @@
 export class QuestionBase<T> {
-  // value: T;
   id: string;
   title: string;
   content: string;
@@ -9,7 +8,6 @@ export class QuestionBase<T> {
   answer?: any;
 
   constructor(options: {
-    // value?: T,
     id?: string,
     title?: string,
     content?: string,

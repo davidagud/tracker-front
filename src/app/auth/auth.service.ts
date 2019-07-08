@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 import { Subject } from 'rxjs';
 
 import { AuthData } from './auth-data.model';
 import { environment } from 'src/environments/environment';
-import { MatSnackBar } from '@angular/material';
 
 const BACKEND_URL = environment.apiUrl + '/user/';
 

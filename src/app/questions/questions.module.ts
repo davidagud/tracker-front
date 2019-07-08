@@ -1,23 +1,14 @@
-import { DynamicFormQuestionsComponent } from './form/dynamic-form-questions/dynamic-form-questions.component';
-import { DynamicFormComponent } from './form/dynamic-form/dynamic-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import {
-  MatDatepickerModule,
-  MatInputModule,
-  MatNativeDateModule,
-  MatButtonModule,
-  MatCardModule,
-  MatExpansionModule,
-  MatSlideToggleModule,
-  MatProgressBarModule,
-  MatSelectModule,
-  MatTableModule
-} from '@angular/material';
 import { CommonModule } from '@angular/common';
-import { DefaultQuestionsComponent } from './default-questions/default-questions.component';
-import { ResponsesComponent } from './responses/responses.component';
 import { RouterModule } from '@angular/router';
+
+import { MaterialModule } from '../material.module';
+
+import { DefaultQuestionsComponent } from './default-questions/default-questions.component';
+import { DynamicFormQuestionsComponent } from './form/dynamic-form-questions/dynamic-form-questions.component';
+import { DynamicFormComponent } from './form/dynamic-form/dynamic-form.component';
+import { ResponsesComponent } from './responses/responses.component';
 
 @NgModule({
   declarations: [
@@ -27,19 +18,10 @@ import { RouterModule } from '@angular/router';
     ResponsesComponent
   ],
   imports: [
-    MatCardModule,
-    MatButtonModule,
     CommonModule,
-    MatDatepickerModule,
-    MatInputModule,
     ReactiveFormsModule,
-    MatNativeDateModule,
-    MatExpansionModule,
-    MatSlideToggleModule,
-    MatProgressBarModule,
     RouterModule,
-    MatSelectModule,
-    MatTableModule
+    MaterialModule
   ]
 })
 export class QuestionsModule {}

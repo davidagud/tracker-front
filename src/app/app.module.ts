@@ -1,32 +1,20 @@
-import { AppRoutingModule } from './app-routing.module';
-import { LoginComponent } from './auth/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
-import {
-  MatCardModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatButtonModule,
-  MatToolbarModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatSlideToggleModule,
-  MatProgressBarModule,
-  MatSelectModule,
-  MatTableModule,
-  MatSnackBarModule
-} from '@angular/material';
-// import { AuthModule } from './auth/auth.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
+import { AppRoutingModule } from './app-routing.module';
+import { MaterialModule } from './material.module';
+
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SignupComponent } from './auth/signup/signup.component';
 import { HeaderComponent } from './header/header.component';
-import { AuthGuard } from './auth/auth.guard';
-import { QuestionsModule } from './questions/questions.module';
 import { HomePageComponent } from './home-page/home-page.component';
+import { LoginComponent } from './auth/login/login.component';
+import { QuestionsModule } from './questions/questions.module';
+import { SignupComponent } from './auth/signup/signup.component';
+
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -37,25 +25,14 @@ import { HomePageComponent } from './home-page/home-page.component';
     HomePageComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    MatFormFieldModule,
     FormsModule,
     HttpClientModule,
-    MatInputModule,
-    MatButtonModule,
-    MatToolbarModule,
-    AppRoutingModule,
-    MatDatepickerModule,
+    MaterialModule,
     QuestionsModule,
-    MatNativeDateModule,
     ReactiveFormsModule,
-    MatSlideToggleModule,
-    MatProgressBarModule,
-    MatSelectModule,
-    MatTableModule,
-    MatSnackBarModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

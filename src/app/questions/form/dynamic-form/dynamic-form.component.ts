@@ -1,11 +1,13 @@
-import { MatSnackBar } from '@angular/material';
-import { UserAnswersService } from '../../services/user-answers.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { QuestionBase } from '../question-base';
+import { MatSnackBar } from '@angular/material';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
+import { UserAnswersService } from '../../services/user-answers.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { QuestionsService } from 'src/app/questions/services/questions.service';
-import { ActivatedRoute } from '@angular/router';
+
+import { QuestionBase } from '../question-base';
 
 @Component({
   selector: 'app-dynamic-form',

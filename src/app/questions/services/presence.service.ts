@@ -1,8 +1,10 @@
-import { DefaultQuestionsService } from './default-questions.service';
 import { Injectable } from '@angular/core';
-import { QuestionsService } from './questions.service';
-import { Question } from '../question.model';
 import { Subject } from 'rxjs';
+
+import { QuestionsService } from './questions.service';
+import { DefaultQuestionsService } from './default-questions.service';
+
+import { Question } from '../question.model';
 
 @Injectable(
   {providedIn: 'root'}

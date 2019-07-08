@@ -1,7 +1,8 @@
-import { UserAnswersService } from './user-answers.service';
-import { AuthService } from '../../auth/auth.service';
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
+
+import { UserAnswersService } from './user-answers.service';
+import { AuthService } from '../../auth/auth.service';
 import { QuestionsService } from './questions.service';
 
 @Injectable({

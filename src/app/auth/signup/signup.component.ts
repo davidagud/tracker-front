@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 import { AuthService } from '../auth.service';
-import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-signup',

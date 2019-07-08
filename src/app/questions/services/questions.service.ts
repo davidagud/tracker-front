@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { Subject } from 'rxjs';
+
 import { Question } from '../question.model';
 
 const BACKEND_URL = environment.apiUrl + '/questions/';
